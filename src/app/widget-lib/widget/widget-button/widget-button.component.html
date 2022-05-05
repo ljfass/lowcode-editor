@@ -1,39 +1,3 @@
-<!-- <button
-  #button
-  class="button"
-  type="button"
-  [class]="[
-    widgetData.setting.attribute.type,
-    widgetData.setting.attribute.size
-  ]"
-  [ngStyle]="{
-    'width.px': widgetData.setting.style.layout.width,
-    'height.px': widgetData.setting.style.layout.height,
-    'border-radius': (widgetData.setting?.style?.radius || 0) + 'px',
-    background: !widgetData.setting?.style?.background?.fill
-      ? 'none'
-      : widgetData.setting?.style?.background?.color || 'blue',
-    'border-width.px': !widgetData.setting?.style?.border?.fill
-      ? 'initial'
-      : widgetData.setting?.style?.border?.width || 1,
-    'border-style': !widgetData.setting?.style?.border?.fill
-      ? 'none'
-      : widgetData.setting?.style?.border?.style || 'solid',
-    'border-color': !widgetData.setting?.style?.border?.fill
-      ? 'initial'
-      : widgetData.setting?.style?.border?.color,
-    'font-size.px': widgetData.setting?.style?.text?.fontSize,
-    'font-weight': widgetData.setting?.style?.text?.fontWeight,
-    'line-height.px': widgetData.setting?.style?.text?.lineHeight,
-    color: widgetData.setting?.style?.text?.color || '#ffffff',
-    opacity: widgetData.setting?.style?.background?.opacity
-  }"
-  (dblclick)="onButtonDoubleClick($event)"
-  
->
-
-</button> -->
-
 <button 
 #button
 nz-button 
