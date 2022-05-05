@@ -1,34 +1,37 @@
-<div class="panel-container">
-    <div class="comp-drop-container">
-        <div class="main">
-            <span class="back-origin"></span>
-            <div #compArea  class="viewport"
-            (drop)="onCompAreaDrop($event)"
-            (dragover)="$event.preventDefault()"
-            > <ng-template #compAreaContainer></ng-template></div>
-        </div>
-    </div>
-    <div class="right-side">
-        <div class="tool-container">
-            <div class="container-title">
-                组件库
-            </div>
-            <div class="divider"></div>
-            <div class="container-items">
-                    <ng-template #toolContainer></ng-template>
-            </div>
-        </div>
-        <div class="setting-container">
-            <div class="container-title">
-                设置
-            </div>
-            <div class="divider"></div>
-            <div class="content-panel">
-                <app-widget-setting [ref]="selectedWidgets[0]" 
-                 *ngIf="selectedWidgets.length === 1"></app-widget-setting>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="main_container">
+  <header>
+    <h2 style="text-align: center">可视化-编辑器</h2>
+  </header>
+  <main class="main_container_main">
+    <!-- Left sidebar -->
+    <aside class="main_container_left">
+      <div class="container-title">组件库</div>
+      <ng-template #toolContainer></ng-template>
+    </aside>
 
-<button (click)="getData()">获取数据</button>
+    <!-- Main content -->
+    <article class="main_container_middle">
+      <div
+        #compArea
+        class="viewport"
+        (drop)="onCompAreaDrop($event)"
+        (dragover)="$event.preventDefault()"
+      >
+        <ng-template #compAreaContainer></ng-template>
+      </div>
+    </article>
+
+    <!-- Right sidebar -->
+    <nav class="main_container_right">
+      <div class="content-panel">
+        <app-widget-setting
+          [ref]="selectedWidgets[0]"
+          *ngIf="selectedWidgets.length === 1"
+        ></app-widget-setting>
+      </div>
+    </nav>
+  </main>
+  <footer>
+    <div style="text-align: center; line-height: 30px">Footer</div>
+  </footer>
+</div>
