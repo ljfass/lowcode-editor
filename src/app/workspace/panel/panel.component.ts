@@ -8,25 +8,25 @@ import {
   OnInit,
   ViewChild,
   ViewContainerRef,
-} from '@angular/core';
-import { WidgetCard } from 'src/app/type/widget-card.type';
-import { WidgetComponent } from 'src/app/widget-lib/widget/widget.component';
-import { WidgetLibComponent } from '../../widget-lib/widget-lib.component';
-import { WidgetLibService } from '../../widget-lib/widget-lib.service';
-import { WidgetData } from 'src/app/type/widget-data.type';
-import { takeWhile } from 'rxjs/operators';
+} from "@angular/core";
+import { WidgetCard } from "src/app/type/widget-card.type";
+import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
+import { WidgetLibComponent } from "../../widget-lib/widget-lib.component";
+import { WidgetLibService } from "../../widget-lib/widget-lib.service";
+import { WidgetData } from "src/app/type/widget-data.type";
+import { takeWhile } from "rxjs/operators";
 
 @Component({
-  selector: 'app-panel',
-  templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.less'],
+  selector: "app-panel",
+  templateUrl: "./panel.component.html",
+  styleUrls: ["./panel.component.less"],
 })
 export class PanelComponent implements OnInit, AfterViewInit {
-  @ViewChild('toolContainer', { read: ViewContainerRef, static: false })
+  @ViewChild("toolContainer", { read: ViewContainerRef, static: false })
   toolContainer!: ViewContainerRef;
-  @ViewChild('compAreaContainer', { read: ViewContainerRef, static: false })
+  @ViewChild("compAreaContainer", { read: ViewContainerRef, static: false })
   compAreaContainer!: ViewContainerRef;
-  @ViewChild('compArea', { static: true }) compArea!: ElementRef;
+  @ViewChild("compArea", { static: true }) compArea!: ElementRef;
   constructor(
     private widgetLibSrv: WidgetLibService,
     private cfr: ComponentFactoryResolver
@@ -53,7 +53,7 @@ export class PanelComponent implements OnInit, AfterViewInit {
 
   onCompAreaDrop(event: DragEvent) {
     event.preventDefault();
-    const widgetType = event.dataTransfer?.getData('widgetType');
+    const widgetType = event.dataTransfer?.getData("widgetType");
     if (widgetType) {
       const widget = this.widgetLibSrv.getWidgetByType(widgetType);
       if (widget) {
@@ -64,7 +64,7 @@ export class PanelComponent implements OnInit, AfterViewInit {
           .pipe(takeWhile(() => this.alive))
           .subscribe(({ type, style, widgetData }) => {});
         comp.instance.setSelected();
-        this.widgets.unshift(comp);
+        this.widgets.push(comp);
       }
     }
   }

@@ -1,4 +1,10 @@
-import { Component, ComponentRef, Input, OnInit } from "@angular/core";
+import {
+  Component,
+  ComponentRef,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from "@angular/core";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 
 @Component({
@@ -6,14 +12,17 @@ import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
   templateUrl: "./widget-setting.component.html",
   styleUrls: ["./widget-setting.component.less"],
 })
-export class WidgetSettingComponent implements OnInit {
+export class WidgetSettingComponent implements OnChanges {
   @Input() ref!: ComponentRef<WidgetComponent>;
 
-  navType = "widget-settings";
-  widgetType!: string;
+  selectedIndex = 0;
   constructor() {}
 
-  ngOnInit(): void {
-    this.widgetType = this.ref.instance.widget.type;
+  ngOnChanges(changes: SimpleChanges): void {
+    this.selectedIndex = 0;
+  }
+
+  onSelectedIndexChange(index: number) {
+    this.selectedIndex = index;
   }
 }

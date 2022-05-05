@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzRadioModule } from 'ng-zorro-antd/radio';
-import { NzSwitchModule } from 'ng-zorro-antd/switch';
-import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzTagModule } from 'ng-zorro-antd/tag';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { zh_CN } from 'ng-zorro-antd/i18n';
-import { registerLocaleData, CommonModule } from '@angular/common';
-import zh from '@angular/common/locales/zh';
+import { NgModule } from "@angular/core";
+import { NzButtonModule } from "ng-zorro-antd/button";
+import { NzInputModule } from "ng-zorro-antd/input";
+import { NzRadioModule } from "ng-zorro-antd/radio";
+import { NzSwitchModule } from "ng-zorro-antd/switch";
+import { NzSelectModule } from "ng-zorro-antd/select";
+import { NzTagModule } from "ng-zorro-antd/tag";
+import { NzToolTipModule } from "ng-zorro-antd/tooltip";
+import { NzInputNumberModule } from "ng-zorro-antd/input-number";
+import { NzTabsModule } from "ng-zorro-antd/tabs";
+import { NZ_I18N } from "ng-zorro-antd/i18n";
+import { zh_CN } from "ng-zorro-antd/i18n";
+import { registerLocaleData, CommonModule } from "@angular/common";
+import zh from "@angular/common/locales/zh";
 
 registerLocaleData(zh);
 
@@ -27,6 +28,7 @@ registerLocaleData(zh);
     NzSelectModule,
     NzTagModule,
     NzToolTipModule,
+    NzTabsModule,
   ],
 })
 export class NgZorroAntdModule {}
