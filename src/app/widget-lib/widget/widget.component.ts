@@ -15,18 +15,17 @@ import {
   ViewChild,
   ViewContainerRef,
   EventEmitter,
-} from '@angular/core';
-import { WidgetCard } from 'src/app/type/widget-card.type';
-import { Page } from 'src/app/type/page.type';
-import { WidgetStatus } from '../../enum/widget-status.enum';
-import { BaseWidgetContent } from './base-widget-content';
-import { WidgetService } from './widget.service';
-import { WidgetData } from 'src/app/type/widget-data.type';
+} from "@angular/core";
+import { WidgetCard } from "src/app/type/widget-card.type";
+import { WidgetStatus } from "../../enum/widget-status.enum";
+import { BaseWidgetContent } from "./base-widget-content";
+import { WidgetService } from "./widget.service";
+import { WidgetData } from "src/app/type/widget-data.type";
 
 @Component({
-  selector: 'app-widget',
-  templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.less'],
+  selector: "app-widget",
+  templateUrl: "./widget.component.html",
+  styleUrls: ["./widget.component.less"],
   providers: [WidgetService],
 })
 export class WidgetComponent
@@ -36,8 +35,6 @@ export class WidgetComponent
   container!: ViewContainerRef;
 
   @Input() widget!: WidgetCard;
-  @Input() page!: Page;
-  @Input() pages!: Page[];
   @Input() widgets!: ComponentRef<WidgetComponent>[];
   @Output() initialized = new EventEmitter<any>();
   @Output() selectWidget = new EventEmitter<any>();
