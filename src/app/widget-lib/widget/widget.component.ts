@@ -26,7 +26,6 @@ import { WidgetData } from "src/app/type/widget-data.type";
   selector: "app-widget",
   templateUrl: "./widget.component.html",
   styleUrls: ["./widget.component.less"],
-  providers: [WidgetService],
 })
 export class WidgetComponent
   implements OnInit, AfterViewInit, OnChanges, OnDestroy, AfterViewInit

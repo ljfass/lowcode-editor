@@ -8,6 +8,8 @@ import { NzTagModule } from "ng-zorro-antd/tag";
 import { NzToolTipModule } from "ng-zorro-antd/tooltip";
 import { NzInputNumberModule } from "ng-zorro-antd/input-number";
 import { NzTabsModule } from "ng-zorro-antd/tabs";
+import { NzCollapseModule } from "ng-zorro-antd/collapse";
+import { NzSliderModule } from "ng-zorro-antd/slider";
 import { NZ_I18N } from "ng-zorro-antd/i18n";
 import { zh_CN } from "ng-zorro-antd/i18n";
 import { registerLocaleData, CommonModule } from "@angular/common";
@@ -29,6 +31,8 @@ registerLocaleData(zh);
     NzTagModule,
     NzToolTipModule,
     NzTabsModule,
+    NzCollapseModule,
+    NzSliderModule,
   ],
 })
 export class NgZorroAntdModule {}

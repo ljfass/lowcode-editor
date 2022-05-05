@@ -40,7 +40,6 @@ export class WidgetButtonComponent
         },
         background: {
           fill: true,
-          color: "blue",
           opacity: 1,
         },
         text: {

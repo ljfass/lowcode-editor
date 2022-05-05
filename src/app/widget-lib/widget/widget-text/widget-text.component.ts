@@ -4,29 +4,29 @@ import {
   ViewChild,
   ElementRef,
   Renderer2,
-} from '@angular/core';
-import { Position } from 'src/app/enum/style.enum';
-import { TextSize } from 'src/app/enum/widget-text/attribute.enum';
-import { WidgetData } from 'src/app/type/widget-data.type';
-import { TextAttribute } from 'src/app/type/widget-text/attribute.type';
-import { BaseWidgetContent } from '../base-widget-content';
+} from "@angular/core";
+import { Position } from "src/app/enum/style.enum";
+import { TextSize } from "src/app/enum/widget-text/attribute.enum";
+import { WidgetData } from "src/app/type/widget-data.type";
+import { TextAttribute } from "src/app/type/widget-text/attribute.type";
+import { BaseWidgetContent } from "../base-widget-content";
 export type TextWidgetData = WidgetData<TextAttribute>;
 
 @Component({
-  selector: 'app-widget-text',
-  templateUrl: './widget-text.component.html',
-  styleUrls: ['./widget-text.component.less'],
+  selector: "app-widget-text",
+  templateUrl: "./widget-text.component.html",
+  styleUrls: ["./widget-text.component.less"],
 })
 export class WidgetTextComponent
   extends BaseWidgetContent
   implements AfterViewInit
 {
-  @ViewChild('textEle') textEle!: ElementRef;
+  @ViewChild("textEle") textEle!: ElementRef;
   widgetData: TextWidgetData = {
-    name: '文本',
+    name: "文本",
     setting: {
       attribute: {
-        text: '请添加你的文本',
+        text: "请添加你的文本",
         size: TextSize.Default,
         mark: false,
         delete: false,
@@ -40,7 +40,6 @@ export class WidgetTextComponent
         },
         background: {
           fill: true,
-          color: 'blue',
           opacity: 1,
         },
         text: {
@@ -54,8 +53,8 @@ export class WidgetTextComponent
         radius: 0,
         border: {
           fill: true,
-          color: 'blue',
-          style: 'solid',
+          color: "blue",
+          style: "solid",
           width: 1,
         },
       },
@@ -78,7 +77,7 @@ export class WidgetTextComponent
   onTextWidgetClick(event: MouseEvent) {
     event.preventDefault();
     setTimeout(() => {
-      this.textEle.nativeElement.setAttribute('contenteditable', 'true');
+      this.textEle.nativeElement.setAttribute("contenteditable", "true");
       this.textEle.nativeElement.focus();
     });
   }
@@ -87,7 +86,7 @@ export class WidgetTextComponent
     this.widgetData.setting.attribute.text =
       this.textEle.nativeElement.innerText;
     this.contentText = this.widgetData.setting.attribute.text;
-    this.textEle.nativeElement.setAttribute('contenteditable', 'false');
+    this.textEle.nativeElement.setAttribute("contenteditable", "false");
   }
 
   createElement(tag: string): HTMLElement {
@@ -95,21 +94,21 @@ export class WidgetTextComponent
   }
 
   clearElementInnerHtml(ele: HTMLElement) {
-    ele.innerHTML = '';
+    ele.innerHTML = "";
   }
 
   getElementInnerContent(ele: HTMLElement, type: string): string {
-    return type === 'html' ? ele.innerHTML : ele.innerText;
+    return type === "html" ? ele.innerHTML : ele.innerText;
   }
 
   handleMarkChange(val: boolean) {
     if (val) {
       const currentHtml = this.getElementInnerContent(
         this.textEle.nativeElement,
-        'html'
+        "html"
       );
-      this.markElement = this.createElement('mark');
-      this.renderer2.setProperty(this.markElement, 'innerHTML', currentHtml);
+      this.markElement = this.createElement("mark");
+      this.renderer2.setProperty(this.markElement, "innerHTML", currentHtml);
       this.clearElementInnerHtml(this.textEle.nativeElement);
       this.renderer2.appendChild(this.textEle.nativeElement, this.markElement);
       this.widgetData.setting.attribute.mark = true;
@@ -118,7 +117,7 @@ export class WidgetTextComponent
       this.clearElementInnerHtml(this.textEle.nativeElement);
       this.renderer2.setProperty(
         this.textEle.nativeElement,
-        'innerHTML',
+        "innerHTML",
         content
       );
       this.widgetData.setting.attribute.mark = false;
@@ -130,16 +129,16 @@ export class WidgetTextComponent
   handleDeleteChange(val: boolean) {
     const innerText = this.getElementInnerContent(
       this.textEle.nativeElement,
-      'text'
+      "text"
     );
     if (val) {
-      this.delElement = this.createElement('del');
+      this.delElement = this.createElement("del");
       if (this.markElement && this.strongElement) {
         this.renderer2.appendChild(this.delElement, this.strongElement);
         this.clearElementInnerHtml(this.markElement);
         this.renderer2.appendChild(this.markElement, this.delElement);
       } else if (this.markElement && !this.strongElement) {
-        this.renderer2.setProperty(this.delElement, 'innerText', innerText);
+        this.renderer2.setProperty(this.delElement, "innerText", innerText);
         this.clearElementInnerHtml(this.markElement);
         this.renderer2.appendChild(this.markElement, this.delElement);
       } else if (!this.markElement && this.strongElement) {
@@ -147,7 +146,7 @@ export class WidgetTextComponent
         this.renderer2.appendChild(this.delElement, this.strongElement);
         this.renderer2.appendChild(this.textEle.nativeElement, this.delElement);
       } else {
-        this.renderer2.setProperty(this.delElement, 'innerText', innerText);
+        this.renderer2.setProperty(this.delElement, "innerText", innerText);
         this.clearElementInnerHtml(this.textEle.nativeElement);
         this.renderer2.appendChild(this.textEle.nativeElement, this.delElement);
       }
@@ -158,7 +157,7 @@ export class WidgetTextComponent
         this.renderer2.appendChild(this.markElement, this.strongElement);
       } else if (this.markElement && !this.strongElement) {
         this.clearElementInnerHtml(this.markElement);
-        this.renderer2.setProperty(this.markElement, 'innerText', innerText);
+        this.renderer2.setProperty(this.markElement, "innerText", innerText);
       } else if (!this.markElement && this.strongElement) {
         this.clearElementInnerHtml(this.textEle.nativeElement);
         this.renderer2.appendChild(
@@ -169,7 +168,7 @@ export class WidgetTextComponent
         this.clearElementInnerHtml(this.textEle.nativeElement);
         this.renderer2.setProperty(
           this.textEle.nativeElement,
-          'innerText',
+          "innerText",
           innerText
         );
       }
@@ -182,11 +181,11 @@ export class WidgetTextComponent
   handleStrongChange(val: boolean) {
     const innerText = this.getElementInnerContent(
       this.textEle.nativeElement,
-      'text'
+      "text"
     );
     if (val) {
-      this.strongElement = this.createElement('strong');
-      this.renderer2.setProperty(this.strongElement, 'innerHTML', innerText);
+      this.strongElement = this.createElement("strong");
+      this.renderer2.setProperty(this.strongElement, "innerHTML", innerText);
       if (this.markElement && this.delElement) {
         this.clearElementInnerHtml(this.delElement);
         this.renderer2.appendChild(this.delElement, this.strongElement);
@@ -210,15 +209,15 @@ export class WidgetTextComponent
         this.strongElement
       );
       if (this.markElement && this.delElement) {
-        this.renderer2.setProperty(this.delElement, 'innerText', innerText);
+        this.renderer2.setProperty(this.delElement, "innerText", innerText);
       } else if (this.markElement && !this.delElement) {
-        this.renderer2.setProperty(this.markElement, 'innerText', innerText);
+        this.renderer2.setProperty(this.markElement, "innerText", innerText);
       } else if (!this.markElement && this.delElement) {
-        this.renderer2.setProperty(this.delElement, 'innerText', innerText);
+        this.renderer2.setProperty(this.delElement, "innerText", innerText);
       } else {
         this.renderer2.setProperty(
           this.textEle.nativeElement,
-          'innerText',
+          "innerText",
           innerText
         );
       }

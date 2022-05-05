@@ -1,60 +1,91 @@
 <div class="text-panel">
-    <div class="header">
-        文字
+  <div class="panel-box">
+    <div class="content-wrapper">
+      <span class="title">字号：</span>
+      <span class="content">
+        <nz-input-number
+          nzSize="small"
+          [ngModel]="ref?.instance?.widgetData?.setting?.style?.text?.fontSize"
+          (ngModelChange)="onWidgetFontSizeChange($event)"
+          [nzFormatter]="formatterPixel"
+          [nzParser]="parserPixel"
+        ></nz-input-number>
+      </span>
     </div>
-    <div class="panel-box">
-        <div>
-            <span class="title">字号：</span>
-            <span class="input">
-                <nz-input-number
-                nzSize="small"
-                  [ngModel]="ref?.instance?.widgetData?.setting?.style?.text?.fontSize" 
-                  (ngModelChange)="onWidgetFontSizeChange($event)"
-                  [nzFormatter]="formatterPixel"
-                  [nzParser]="parserPixel"
-                  ></nz-input-number>
-            </span>
-        </div>
-        <div>
-            <span class="title">行高：</span>
-            <span class="input">
-                <nz-input-number
-                nzSize="small"
-                  [ngModel]="ref?.instance?.widgetData?.setting?.style?.text?.lineHeight" 
-                  (ngModelChange)="onWidgetLineHeightChange($event)"
-                  [nzFormatter]="formatterPixel"
-                  [nzParser]="parserPixel"
-                  ></nz-input-number>
+  </div>
+  <div class="panel-box">
+    <div class="content-wrapper">
+      <span class="title">行高：</span>
+      <span class="content">
+        <nz-input-number
+          nzSize="small"
+          [ngModel]="
+            ref?.instance?.widgetData?.setting?.style?.text?.lineHeight
+          "
+          (ngModelChange)="onWidgetLineHeightChange($event)"
+          [nzFormatter]="formatterPixel"
+          [nzParser]="parserPixel"
+        ></nz-input-number>
+      </span>
+    </div>
+  </div>
+  <div class="panel-box">
+    <div class="content-wrapper">
+      <span class="title"> 字重：</span>
+      <span class="content">
+        <nz-select
+          [ngModel]="
+            ref?.instance?.widgetData?.setting?.style?.text?.fontWeight
+          "
+          (ngModelChange)="onWidgetFontWeightChange($event)"
+        >
+          <nz-option
+            *ngFor="let item of fontSizeOptions"
+            [nzLabel]="item.label"
+            [nzValue]="item.value"
+          ></nz-option>
+        </nz-select>
+      </span>
+    </div>
+  </div>
 
-            </span>
+  <div class="panel-box">
+    <div class="content-wrapper opacity-slider">
+      <span class="title"> 透明度： </span>
+      <span class="content">
+        <div class="slider-container">
+          <nz-slider
+            [(ngModel)]="fontWeight"
+            nzMin="0"
+            nzMax="100"
+            (ngModelChange)="onWidgetBgOpacityChange($event)"
+          ></nz-slider>
         </div>
-    </div>
-    <div class="panel-box">
-        <div>
-            <span class="title">
-               字重：
-            </span>
-            <span class="select">
-                <select [ngModel]="ref?.instance?.widgetData?.setting?.style?.text?.fontWeight" (ngModelChange)="onWidgetFontWeightChange($event)">
-                    <option *ngFor="let item of fontSizeOptions" [ngValue]="item.value">{{item.label}}</option>
-                </select>
-                
-            </span>
+        <div class="input-container">
+          <nz-input-number
+            nzSize="small"
+            [nzMax]="100"
+            [nzMin]="0"
+            [ngModel]="fontWeight"
+            (ngModelChange)="onWidgetBgOpacityChange($event)"
+          ></nz-input-number>
         </div>
+      </span>
     </div>
-    <div class="panel-box">
-        <div>
-            <span class="title">
-               透明度：
-            </span>
-            <span class="select">
-            
-                <input type="range" 
-                [ngModel]="fontWeight"
-                       min="0" max="100"  (ngModelChange)="onWidgetBgOpacityChange($event)">
-                
-            </span>
-        </div>
+  </div>
+
+  <div class="panel-box">
+    <div class="content-wrapper color-picker">
+      <span class="title">文字颜色：</span>
+      <div class="content">
+        <!-- <color-sketch [color]="textColor" 
+                (onChangeComplete)="onColorPickerChange($event)"></color-sketch> -->
+        <input
+          [(colorPicker)]="textColor"
+          [style.background]="textColor"
+          (colorPickerChange)="onColorPickerChange($event)"
+        />
+      </div>
     </div>
-    
+  </div>
 </div>

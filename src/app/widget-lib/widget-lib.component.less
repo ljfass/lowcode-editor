@@ -12,9 +12,8 @@
       height: 70px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      background: #363738;
-      color: #b8bcbf;
+      align-items: center;  
+      border: 1px solid #eee;
       border-radius: 4px;
       margin: 0px 4px 8px 4px;
       cursor: pointer;
@@ -22,7 +21,8 @@
       position: relative;
 
       &:hover {
-        background-color: #454647;
+       box-shadow: 0 6px 16px 0 rgb(0 0 0 / 15%);
+       border-color: transparent;
       }
 
       .widget-icon-wrapper {
@@ -38,7 +38,6 @@
         margin-top: 6px;
         text-align: center;
         line-height: 12px;
-        color: #b8bcbf;
         max-width: 90%;
         white-space: nowrap;
         text-overflow: ellipsis;

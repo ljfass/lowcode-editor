@@ -98,8 +98,6 @@ export class PanelComponent implements OnInit, AfterViewInit {
           this.selectedWidgets.splice(0, this.selectedWidgets.length, comp);
         }
       });
-    console.log(comp);
-
     return comp;
   }
 

@@ -1,13 +1,14 @@
 <div (dblclick)="onTextWidgetClick($event)" >
-    <span  #textEle 
-    
+    <span  #textEle
     [ngStyle]="{
         'width.px':widgetData.setting.style.layout.width,
         'height.px':widgetData.setting.style.layout.height,
         'font-size.px': widgetData.setting.style.text.fontSize,
         'line-height.px': widgetData.setting.style.text.lineHeight,
         'font-weight': widgetData.setting?.style?.text?.fontWeight,
-        'opacity': widgetData.setting?.style?.background?.opacity
+        'opacity': widgetData.setting?.style?.background?.opacity,
+        'background': widgetData.setting.style.background.color?widgetData.setting.style.background.color: 'none',
+        'color': widgetData.setting.style.text.color?widgetData.setting.style.text.color: 'inherit'
     }"
     [ngClass]="widgetData.setting.attribute.size"
     (blur)="contentEditableBlur()">

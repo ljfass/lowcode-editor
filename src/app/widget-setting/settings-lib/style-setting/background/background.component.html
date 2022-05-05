@@ -1,1 +1,5 @@
-<p>background works!</p>
+<span>
+    背景颜色：
+</span>
+<input [(colorPicker)]="color" 
+[style.background]="color" (colorPickerChange)="onColorPickerChange($event)" />

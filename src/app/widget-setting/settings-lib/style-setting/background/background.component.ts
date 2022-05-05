@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentRef } from "@angular/core";
+import { WidgetData } from "src/app/type/widget-data.type";
+import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 
 @Component({
-  selector: 'app-background',
-  templateUrl: './background.component.html',
-  styleUrls: ['./background.component.less']
+  selector: "app-background",
+  templateUrl: "./background.component.html",
+  styleUrls: ["./background.component.less"],
 })
-export class BackgroundComponent implements OnInit {
+export class BackgroundComponent {
+  color!: string;
+  constructor(public ref: ComponentRef<WidgetComponent>) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  onColorPickerChange(color: string) {
+    (
+      this.ref.instance.widgetData as WidgetData<any>
+    ).setting.style.background.color = color;
   }
-
 }

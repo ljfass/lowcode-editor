@@ -19,7 +19,9 @@ export class WidgetSettingComponent implements OnChanges {
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.selectedIndex = 0;
+    if (!changes.ref.firstChange) {
+      this.selectedIndex = 0;
+    }
   }
 
   onSelectedIndexChange(index: number) {
