@@ -1,0 +1,4 @@
+<nz-input-group nzAddOnBefore="幽灵按钮" [nzSize]="'small'" >
+    <nz-switch [ngModel]="ref.instance.widgetData?.setting?.attribute?.ghost" 
+    (ngModelChange)="onSelectChange($event)"></nz-switch>
+</nz-input-group>

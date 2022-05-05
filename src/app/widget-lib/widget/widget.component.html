@@ -1,0 +1,14 @@
+<div class="widget-wrapper" 
+    [ngClass]="{
+        selected: !!status
+    }"
+    (mousedown)="onMouseEvent($event)"
+>
+    <div class="widget">
+        <div class="widget-name">{{widget.name}}</div>
+        <div class="widget-actions">
+            <app-widget-right-corner-action [name]="widget.name"></app-widget-right-corner-action>
+        </div>
+        <ng-template></ng-template>
+    </div>
+</div>

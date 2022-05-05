@@ -1,0 +1,26 @@
+<div class="layout-panel">
+    <div class="header">
+        布局
+    </div>
+    <div class="panel-box">
+        <div>
+            <span class="title">宽度：</span>
+                <nz-input-number
+                nzSize="small"
+                  [ngModel]="ref?.instance?.widgetData?.setting?.style?.layout?.width" 
+                  (ngModelChange)="onWidgetWidth($event)"
+                  [nzFormatter]="formatterPixel"
+                  [nzParser]="parserPixel"
+                  ></nz-input-number>
+        </div>
+    <div>
+        <span class="title">高度：</span>
+        <nz-input-number
+                nzSize="small"
+                  [ngModel]="ref?.instance?.widgetData?.setting?.style?.layout?.height" 
+                  (ngModelChange)="onWidgetHeight($event)"
+                  [nzFormatter]="formatterPixel"
+                  [nzParser]="parserPixel"
+                  ></nz-input-number>
+    </div>
+</div>

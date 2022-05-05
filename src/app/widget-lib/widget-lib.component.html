@@ -1,0 +1,14 @@
+<ul class="widget-list">
+    <li
+        *ngFor="let widget of widgetList"
+        draggable="true"
+        (dragstart)="onWidgetDragStart($event, widget)"
+        (dragend)="onWidgetDragEnd($event)"
+        class="widget-item"
+    >
+    <div class="widget-icon-wrapper">
+        <i class="iconfont {{ widget.icon }}"></i>
+      </div>
+      <span class="widget-name">{{ widget.name }}</span>
+</li>
+</ul>

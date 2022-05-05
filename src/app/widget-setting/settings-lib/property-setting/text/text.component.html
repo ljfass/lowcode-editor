@@ -1,0 +1,47 @@
+<p>
+    <span>字体大小</span>
+    <span>
+        <nz-select nzSize="small" [ngModel]="ref.instance.widgetData.setting.attribute.size"
+        (ngModelChange)="onFontSelectChange($event)">
+            <nz-option *ngFor="let item of fontOptions" [nzValue]="item.value"
+             [nzLabel]="item.label"></nz-option>
+          </nz-select>
+    </span>
+</p>
+
+<p>
+    <span>文本内容</span>
+    <span>
+        <textarea nzSize="small"  rows="3" nz-input [ngModel]="ref.instance.widgetData.setting.attribute.text"
+        (ngModelChange)="onTextAreaChange($event)"
+        ></textarea>
+    </span>
+</p>
+
+<p>
+    <nz-input-group nzAddOnBefore="标记" [nzSize]="'small'" >
+        <nz-switch [ngModel]="ref.instance.widgetData?.setting?.attribute?.mark" 
+        (ngModelChange)="onShowMarkChange($event)"></nz-switch>
+    </nz-input-group>
+</p>
+
+<p>
+    <nz-input-group nzAddOnBefore="删除线" [nzSize]="'small'" >
+        <nz-switch [ngModel]="ref.instance.widgetData?.setting?.attribute?.delete" 
+        (ngModelChange)="onShowDeleteChange($event)"></nz-switch>
+    </nz-input-group>
+</p>
+
+<p>
+    <nz-input-group nzAddOnBefore="下划线" [nzSize]="'small'" >
+        <nz-switch [ngModel]="ref.instance.widgetData?.setting?.attribute?.underlined" 
+        (ngModelChange)="onShowUnderlineChange($event)"></nz-switch>
+    </nz-input-group>
+</p>
+
+<p>
+    <nz-input-group nzAddOnBefore="是否加粗" [nzSize]="'small'" >
+        <nz-switch [ngModel]="ref.instance.widgetData?.setting?.attribute?.strong" 
+        (ngModelChange)="onShowStrongChange($event)"></nz-switch>
+    </nz-input-group>
+</p>

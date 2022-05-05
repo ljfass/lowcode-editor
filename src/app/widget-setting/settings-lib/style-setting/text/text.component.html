@@ -1,0 +1,60 @@
+<div class="text-panel">
+    <div class="header">
+        文字
+    </div>
+    <div class="panel-box">
+        <div>
+            <span class="title">字号：</span>
+            <span class="input">
+                <nz-input-number
+                nzSize="small"
+                  [ngModel]="ref?.instance?.widgetData?.setting?.style?.text?.fontSize" 
+                  (ngModelChange)="onWidgetFontSizeChange($event)"
+                  [nzFormatter]="formatterPixel"
+                  [nzParser]="parserPixel"
+                  ></nz-input-number>
+            </span>
+        </div>
+        <div>
+            <span class="title">行高：</span>
+            <span class="input">
+                <nz-input-number
+                nzSize="small"
+                  [ngModel]="ref?.instance?.widgetData?.setting?.style?.text?.lineHeight" 
+                  (ngModelChange)="onWidgetLineHeightChange($event)"
+                  [nzFormatter]="formatterPixel"
+                  [nzParser]="parserPixel"
+                  ></nz-input-number>
+
+            </span>
+        </div>
+    </div>
+    <div class="panel-box">
+        <div>
+            <span class="title">
+               字重：
+            </span>
+            <span class="select">
+                <select [ngModel]="ref?.instance?.widgetData?.setting?.style?.text?.fontWeight" (ngModelChange)="onWidgetFontWeightChange($event)">
+                    <option *ngFor="let item of fontSizeOptions" [ngValue]="item.value">{{item.label}}</option>
+                </select>
+                
+            </span>
+        </div>
+    </div>
+    <div class="panel-box">
+        <div>
+            <span class="title">
+               透明度：
+            </span>
+            <span class="select">
+            
+                <input type="range" 
+                [ngModel]="fontWeight"
+                       min="0" max="100"  (ngModelChange)="onWidgetBgOpacityChange($event)">
+                
+            </span>
+        </div>
+    </div>
+    
+</div>

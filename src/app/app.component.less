@@ -1,0 +1,35 @@
+.app-container {
+    height: 100%;
+    overflow: hidden;
+    .app-top {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 50px;
+        color: #393e46;
+        z-index: 5;
+        box-shadow: 0 0 1px 0 #ccc;
+        overflow: hidden;
+        .header-container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+    }
+    .app-main {
+        position: relative;
+        top: 50px;
+        bottom: 0;
+        height: calc(100% - 50px);
+        .component-main {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    }
+}

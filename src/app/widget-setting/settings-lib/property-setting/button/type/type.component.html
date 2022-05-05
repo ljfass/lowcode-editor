@@ -1,0 +1,9 @@
+
+  <nz-input-group nzAddOnBefore="按钮类型" [nzSize]="'small'" >
+    <nz-radio-group nzSize="small" [ngModel]="ref.instance.widgetData?.setting?.attribute?.type" (ngModelChange)="onSelectChange($event)">
+        <label nz-radio-button nzValue="primary">primary</label>
+        <label nz-radio-button nzValue="dashed">dashed</label>
+        <label nz-radio-button nzValue="link">link</label>
+        <label nz-radio-button nzValue="text">text</label>
+      </nz-radio-group>
+  </nz-input-group>

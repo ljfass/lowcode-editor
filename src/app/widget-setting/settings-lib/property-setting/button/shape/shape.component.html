@@ -1,0 +1,9 @@
+
+  <nz-input-group nzAddOnBefore="按钮形状" [nzSize]="'small'" >
+    <nz-radio-group nzSize="small"
+     [ngModel]="ref.instance.widgetData?.setting?.attribute?.shape" (ngModelChange)="onSelectChange($event)">
+        <label nz-radio-button [nzValue]="null">default</label>
+        <label nz-radio-button nzValue="circle">circle</label>
+        <label nz-radio-button nzValue="round">round</label>
+      </nz-radio-group>
+  </nz-input-group>
