@@ -10,10 +10,12 @@ import { WidgetSettingModule } from "../widget-setting/widget-setting.module";
 import { WidgetTextComponent } from "../widget-lib/widget/widget-text/widget-text.component";
 import { WidgetRightCornerActionComponent } from "../components/widget-right-corner-action/widget-right-corner-action.component";
 import { NzIconModule } from "ng-zorro-antd/icon";
+import { WidgetDatePickerComponent } from "../widget-lib/widget/widget-date-picker/widget-date-picker.component";
 
 const components = [
   WidgetButtonComponent,
   WidgetTextComponent,
+  WidgetDatePickerComponent,
   WidgetComponent,
   WidgetLibComponent,
   WidgetRightCornerActionComponent,

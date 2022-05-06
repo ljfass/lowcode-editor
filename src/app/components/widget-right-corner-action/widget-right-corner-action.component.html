@@ -1,8 +1,17 @@
-<div #sldfjslf>
-    <nz-tag [nzColor]="'#108ee9'">{{name}}</nz-tag>
-    <nz-tag [nzColor]="'#108ee9'">
-       <i nz-icon nzType="copy"  nzTheme="outline"></i>
-        <i nz-icon nzType="delete" nzTheme="outline">
-        </i>
-    </nz-tag>
+<div class="widget-right-corner-actions">
+  <div class="widget-right-corner-action">
+    <i nz-icon nzType="copy" nzTheme="outline"></i>
+  </div>
+  <div class="widget-right-corner-action">
+    <i nz-icon nzType="delete" nzTheme="outline"> </i>
+  </div>
+  <div class="instance-node-selector">
+    <div class="instance-node-selector-content">
+      <span class="instance-node-selector-content-title">
+        <span class="title-text">
+          {{ name }}
+        </span>
+      </span>
+    </div>
+  </div>
 </div>

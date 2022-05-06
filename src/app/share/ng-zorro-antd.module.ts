@@ -7,7 +7,9 @@ import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzTagModule } from "ng-zorro-antd/tag";
 import { NzToolTipModule } from "ng-zorro-antd/tooltip";
 import { NzInputNumberModule } from "ng-zorro-antd/input-number";
+import { NzDatePickerModule } from "ng-zorro-antd/date-picker";
 import { NzTabsModule } from "ng-zorro-antd/tabs";
+import { NzPopoverModule } from "ng-zorro-antd/popover";
 import { NzCollapseModule } from "ng-zorro-antd/collapse";
 import { NzSliderModule } from "ng-zorro-antd/slider";
 import { NZ_I18N } from "ng-zorro-antd/i18n";
@@ -33,6 +35,8 @@ registerLocaleData(zh);
     NzTabsModule,
     NzCollapseModule,
     NzSliderModule,
+    NzDatePickerModule,
+    NzPopoverModule,
   ],
 })
 export class NgZorroAntdModule {}

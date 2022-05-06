@@ -1,21 +1,72 @@
 <div class="property-setting-item">
-    <app-text [ref]="ref"></app-text>
+  <div>
+    <nz-input-group nzAddOnBefore="按钮内容" [nzSize]="'small'">
+      <input
+        nz-input
+        [ngModel]="ref.instance.widgetData?.setting?.attribute?.buttonText"
+        (ngModelChange)="onInputChange($event)"
+      />
+    </nz-input-group>
+  </div>
 </div>
 <div class="property-setting-item">
-    <app-size [ref]="ref"></app-size>
+  <nz-input-group nzAddOnBefore="按钮尺寸" [nzSize]="'small'">
+    <app-my-size-picker
+      pickerSize="small"
+      [ngModel]="ref.instance.widgetData?.setting?.attribute?.size"
+      (ngModelChange)="onSizeChange($event)"
+    >
+    </app-my-size-picker>
+  </nz-input-group>
 </div>
 <div class="property-setting-item">
-    <app-type [ref]="ref"></app-type>
+  <nz-input-group nzAddOnBefore="按钮类型" [nzSize]="'small'">
+    <nz-radio-group
+      nzSize="small"
+      [ngModel]="ref.instance.widgetData?.setting?.attribute?.type"
+      (ngModelChange)="onTypeChange($event)"
+    >
+      <label nz-radio-button nzValue="primary">primary</label>
+      <label nz-radio-button nzValue="dashed">dashed</label>
+      <label nz-radio-button nzValue="link">link</label>
+      <label nz-radio-button nzValue="text">text</label>
+    </nz-radio-group>
+  </nz-input-group>
 </div>
 <div class="property-setting-item">
-    <app-shape [ref]="ref"></app-shape>
+  <nz-input-group nzAddOnBefore="按钮形状" [nzSize]="'small'">
+    <nz-radio-group
+      nzSize="small"
+      [ngModel]="ref.instance.widgetData?.setting?.attribute?.shape"
+      (ngModelChange)="onShapeChange($event)"
+    >
+      <label nz-radio-button [nzValue]="null">default</label>
+      <label nz-radio-button nzValue="circle">circle</label>
+      <label nz-radio-button nzValue="round">round</label>
+    </nz-radio-group>
+  </nz-input-group>
 </div>
 <div class="property-setting-item">
-    <app-ghost [ref]="ref"></app-ghost>
+  <nz-input-group nzAddOnBefore="幽灵按钮" [nzSize]="'small'">
+    <nz-switch
+      [ngModel]="ref.instance.widgetData?.setting?.attribute?.ghost"
+      (ngModelChange)="onGhostChange($event)"
+    ></nz-switch>
+  </nz-input-group>
 </div>
 <div class="property-setting-item">
-    <app-disable [ref]="ref"></app-disable>
+  <nz-input-group nzAddOnBefore="禁用" [nzSize]="'small'">
+    <nz-switch
+      [ngModel]="ref.instance.widgetData?.setting?.attribute?.disabled"
+      (ngModelChange)="onDisableChange($event)"
+    ></nz-switch>
+  </nz-input-group>
 </div>
 <div class="property-setting-item">
-    <app-loading [ref]="ref"></app-loading>
+  <nz-input-group nzAddOnBefore="loading" [nzSize]="'small'">
+    <nz-switch
+      [ngModel]="ref.instance.widgetData?.setting?.attribute?.loading"
+      (ngModelChange)="onLoadingChange($event)"
+    ></nz-switch>
+  </nz-input-group>
 </div>

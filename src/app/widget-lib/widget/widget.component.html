@@ -1,14 +1,29 @@
-<div class="widget-wrapper" 
-    [ngClass]="{
-        selected: !!status
-    }"
-    (mousedown)="onMouseEvent($event)"
+<div
+  class="widget-wrapper"
+  [ngClass]="{
+    selected: !!status
+  }"
+  #widgetWrapper
+  (mousedown)="onMouseEvent($event)"
 >
-    <div class="widget">
-        <div class="widget-name">{{widget.name}}</div>
-        <div class="widget-actions">
-            <app-widget-right-corner-action [name]="widget.name"></app-widget-right-corner-action>
-        </div>
-        <ng-template></ng-template>
+  <div class="widget">
+    <div class="widget-name">{{ widget.name }}</div>
+    <div class="widget-actions">
+      <app-widget-right-corner-action
+        [name]="widget.name"
+      ></app-widget-right-corner-action>
     </div>
+    <ng-template></ng-template>
+  </div>
 </div>
+
+<div
+  [ngStyle]="{
+    position: 'absolute',
+    border: '1px solid orange',
+    'left.px': widgetStyle.left,
+    'top.px': widgetStyle.top,
+    'width.px': widgetStyle.width,
+    'height.px': widgetStyle.height
+  }"
+></div>

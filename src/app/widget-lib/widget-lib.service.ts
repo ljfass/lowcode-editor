@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { WIDGET_LIST } from '../const/base-widget.const';
-import { WidgetCard } from 'src/app/type/widget-card.type';
+import { Injectable } from "@angular/core";
+import { WIDGET_LIST } from "../const";
+import { WidgetCard } from "src/app/type";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class WidgetLibService {
   widgetLib = WIDGET_LIST;

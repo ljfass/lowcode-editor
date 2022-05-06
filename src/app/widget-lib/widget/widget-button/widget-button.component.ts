@@ -1,12 +1,7 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 import { NzButtonComponent } from "ng-zorro-antd/button";
-import { Position } from "src/app/enum/style.enum";
-import {
-  ButtonSize,
-  ButtonType,
-} from "src/app/enum/widget-button/attribute.enum";
-import { ButtonAttribute } from "src/app/type/widget-button/attribute.type";
-import { WidgetData } from "src/app/type/widget-data.type";
+import { ButtonSize, Position, ButtonType } from "../../../enum";
+import { ButtonAttribute, WidgetData } from "src/app/type";
 import { BaseWidgetContent } from "../base-widget-content";
 
 export type ButtonWidgetData = WidgetData<ButtonAttribute>;

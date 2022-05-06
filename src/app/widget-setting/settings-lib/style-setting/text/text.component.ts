@@ -1,10 +1,7 @@
 import { Component, ComponentRef } from "@angular/core";
-import { buttonWiddgetFontSzieOptions } from "src/app/const/font-size.const";
-import { WidgetData } from "src/app/type/widget-data.type";
-import {
-  nzInputNumberFormatter,
-  nzInputNumberParser,
-} from "src/app/utils/nz-input-number-formatter";
+import { buttonWiddgetFontSzieOptions } from "src/app/const";
+import { WidgetData } from "src/app/type";
+import { nzInputNumberFormatter, nzInputNumberParser } from "src/app/utils";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 
 @Component({
@@ -15,6 +12,15 @@ import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 export class TextComponent {
   fontWeight!: number;
   textColor!: string;
+
+  get value(): any {
+    return this.textColor;
+  }
+
+  set value(v: any) {
+    this.textColor = v;
+  }
+
   constructor(public ref: ComponentRef<WidgetComponent>) {
     if (ref) {
       this.fontWeight =
@@ -48,9 +54,8 @@ export class TextComponent {
   }
 
   onColorPickerChange(color: string) {
-    // (this.ref.instance.widgetData as WidgetData<any>).setting.style.text.color =
-    //   color.color;
-    console.log(color);
+    (this.ref.instance.widgetData as WidgetData<any>).setting.style.text.color =
+      color;
   }
 
   formatterPixel = nzInputNumberFormatter("px");

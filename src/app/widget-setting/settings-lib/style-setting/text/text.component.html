@@ -78,13 +78,10 @@
     <div class="content-wrapper color-picker">
       <span class="title">文字颜色：</span>
       <div class="content">
-        <!-- <color-sketch [color]="textColor" 
-                (onChangeComplete)="onColorPickerChange($event)"></color-sketch> -->
-        <input
-          [(colorPicker)]="textColor"
-          [style.background]="textColor"
-          (colorPickerChange)="onColorPickerChange($event)"
-        />
+        <app-my-color-picker
+          [ngModel]="textColor"
+          (ngModelChange)="onColorPickerChange($event)"
+        ></app-my-color-picker>
       </div>
     </div>
   </div>

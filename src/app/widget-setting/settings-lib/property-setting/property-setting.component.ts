@@ -9,20 +9,19 @@ import {
   SimpleChanges,
   ViewChild,
   ViewContainerRef,
-} from '@angular/core';
-import { WidgetComponent } from 'src/app/widget-lib/widget/widget.component';
-import { ButtonComponent } from './button/button.component';
-import { TextComponent } from './text/text.component';
+} from "@angular/core";
+import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
+import { ButtonComponent, TextComponent, DatePickerComponent } from "./index";
 
 @Component({
-  selector: 'app-property-setting',
-  templateUrl: './property-setting.component.html',
-  styleUrls: ['./property-setting.component.less'],
+  selector: "app-property-setting",
+  templateUrl: "./property-setting.component.html",
+  styleUrls: ["./property-setting.component.less"],
 })
 export class PropertySettingComponent implements OnChanges {
   @Input() ref!: ComponentRef<WidgetComponent>;
-  @ViewChild('buttonRender', { read: ViewContainerRef, static: false })
-  buttonRender!: ViewContainerRef;
+  @ViewChild("propertyRender", { read: ViewContainerRef, static: false })
+  propertyRender!: ViewContainerRef;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -37,18 +36,21 @@ export class PropertySettingComponent implements OnChanges {
 
   renderSetting(type: string) {
     switch (type) {
-      case 'button':
+      case "button":
         this.renderWidgetPropertySetting(ButtonComponent);
         break;
-      case 'text':
+      case "text":
         this.renderWidgetPropertySetting(TextComponent);
+        break;
+      case "date-picker":
+        this.renderWidgetPropertySetting(DatePickerComponent);
         break;
     }
   }
 
   renderWidgetPropertySetting(component: any) {
     setTimeout(() => {
-      this.buttonRender.clear();
+      this.propertyRender.clear();
       const factory = this.resolver.resolveComponentFactory(component);
       const injector = Injector.create({
         providers: [
@@ -58,7 +60,7 @@ export class PropertySettingComponent implements OnChanges {
           },
         ],
       });
-      this.buttonRender.createComponent(factory, 0, injector);
+      this.propertyRender.createComponent(factory, 0, injector);
       this.cdr.detectChanges();
     });
   }

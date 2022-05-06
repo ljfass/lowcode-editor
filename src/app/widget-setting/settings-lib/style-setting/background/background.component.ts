@@ -1,5 +1,5 @@
 import { Component, ComponentRef } from "@angular/core";
-import { WidgetData } from "src/app/type/widget-data.type";
+import { WidgetData } from "src/app/type";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 
 @Component({

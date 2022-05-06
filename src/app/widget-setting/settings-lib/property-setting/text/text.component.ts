@@ -1,14 +1,14 @@
-import { Component, ComponentRef, OnInit } from '@angular/core';
-import { textWiddgetFontSzieOptions } from 'src/app/const/font-size.const';
-import { WidgetTextComponent } from 'src/app/widget-lib/widget/widget-text/widget-text.component';
-import { WidgetComponent } from 'src/app/widget-lib/widget/widget.component';
+import { Component, ComponentRef } from "@angular/core";
+import { textWiddgetFontSzieOptions } from "src/app/const";
+import { WidgetTextComponent } from "src/app/widget-lib/widget/widget-text/widget-text.component";
+import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 
 @Component({
-  selector: 'app-text',
-  templateUrl: './text.component.html',
-  styleUrls: ['./text.component.less'],
+  selector: "app-text",
+  templateUrl: "./text.component.html",
+  styleUrls: ["./text.component.less"],
 })
-export class TextComponent implements OnInit {
+export class TextComponent {
   constructor(public ref: ComponentRef<WidgetComponent>) {}
   fontOptions = textWiddgetFontSzieOptions;
   onFontSelectChange(font: string) {
@@ -38,6 +38,4 @@ export class TextComponent implements OnInit {
   onTextAreaChange(value: string) {
     this.ref.instance.widgetData.setting.attribute.text = value;
   }
-
-  ngOnInit(): void {}
 }

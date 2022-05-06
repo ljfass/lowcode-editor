@@ -1,0 +1,29 @@
+<!-- <color-sketch [color]="color" (onChange)="onChange($event)"></color-sketch> -->
+<div class="color-main">
+  <div class="color-open-toggle">
+    <span
+      class="color-span"
+      nz-popover
+      nzPopoverTitle="Title"
+      [nzPopoverContent]="colorPickerTpl"
+      nzPopoverPlacement="left"
+      nzPopoverTrigger="click"
+      [nzPopoverPlacement]="position"
+      [ngStyle]="{ 'background-color': backgroundColor }"
+    ></span>
+  </div>
+  <ng-template #colorPickerTpl>
+    <div
+      class="color-sketch"
+      [ngStyle]="{
+        'width.px': width,
+        'height.px': height
+      }"
+    >
+      <color-sketch
+        [color]="color"
+        (onChange)="onChange($event)"
+      ></color-sketch>
+    </div>
+  </ng-template>
+</div>

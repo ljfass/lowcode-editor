@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
-import { WidgetStatus } from "src/app/enum/widget-status.enum";
+import { WidgetStatus } from "src/app/enum";
 
 @Injectable({
   providedIn: "root",

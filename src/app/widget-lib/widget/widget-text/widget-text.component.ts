@@ -5,10 +5,8 @@ import {
   ElementRef,
   Renderer2,
 } from "@angular/core";
-import { Position } from "src/app/enum/style.enum";
-import { TextSize } from "src/app/enum/widget-text/attribute.enum";
-import { WidgetData } from "src/app/type/widget-data.type";
-import { TextAttribute } from "src/app/type/widget-text/attribute.type";
+import { Position, TextSize } from "src/app/enum";
+import { WidgetData, TextAttribute } from "src/app/type";
 import { BaseWidgetContent } from "../base-widget-content";
 export type TextWidgetData = WidgetData<TextAttribute>;
 

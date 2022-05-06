@@ -1,27 +1,33 @@
 .text-panel {
-        .panel-box {
-            height: 32px;
+    .panel-box {
+        height: 32px;
         padding-left: 15px;
         margin-bottom: 10px;
+
         .content-wrapper {
             width: 100%;
             align-items: center;
             display: flex;
             margin-right: 10px;
+
             .title {
                 width: 78px;
                 text-align: right;
             }
+
             .content {
                 flex: 1;
             }
         }
+
         .color-picker {
             .content {
                 input {
                     width: 100%;
+
                     .color-picker {
                         border: none;
+
                         &.open {
                             border: 1px solid #777;
                         }
@@ -29,17 +35,21 @@
                 }
             }
         }
+
         .opacity-slider {
             .content {
                 display: flex;
-                flex:1;
+                flex: 1;
                 align-items: center;
+
                 .slider-container {
                     flex: 1;
                     margin-right: 10px;
                 }
+
                 .input-container {
                     width: 60px;
+
                     nz-input-number {
                         width: 100%;
                     }

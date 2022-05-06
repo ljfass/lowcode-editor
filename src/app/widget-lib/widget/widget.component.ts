@@ -15,12 +15,12 @@ import {
   ViewChild,
   ViewContainerRef,
   EventEmitter,
+  ElementRef,
 } from "@angular/core";
-import { WidgetCard } from "src/app/type/widget-card.type";
-import { WidgetStatus } from "../../enum/widget-status.enum";
+import { WidgetCard, WidgetData } from "src/app/type";
+import { WidgetStatus } from "../../enum";
 import { BaseWidgetContent } from "./base-widget-content";
 import { WidgetService } from "./widget.service";
-import { WidgetData } from "src/app/type/widget-data.type";
 
 @Component({
   selector: "app-widget",
@@ -43,6 +43,13 @@ export class WidgetComponent
 
   contentComponentRef?: ComponentRef<BaseWidgetContent>;
   widgetData!: WidgetData<any>;
+  public widgetStyle = {
+    width: 0,
+    height: 0,
+    left: 0,
+    top: 0,
+  };
+  @ViewChild("widgetWrapper") widgetEle!: ElementRef;
 
   constructor(
     private widgetSrv: WidgetService,
@@ -68,6 +75,14 @@ export class WidgetComponent
       type: this.widget.type,
       widgetData: this.widgetData,
     });
+    this.cdr.detectChanges();
+
+    this.widgetStyle = {
+      width: this.widgetEle.nativeElement.offsetWidth,
+      height: this.widgetEle.nativeElement.offsetHeight,
+      left: this.widgetEle.nativeElement.offsetLeft,
+      top: this.widgetEle.nativeElement.offsetTop,
+    };
     this.cdr.detectChanges();
   }
 

@@ -1,4 +1,4 @@
-import { ClearFloat, Float, Position } from '../enum/style.enum';
+import { ClearFloat, Float, Position } from "../enum";
 
 export type ApperanceSetting = {
   layout: {

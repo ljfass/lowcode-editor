@@ -9,11 +9,10 @@ import {
   ViewChild,
   ViewContainerRef,
 } from "@angular/core";
-import { WidgetCard } from "src/app/type/widget-card.type";
+import { WidgetCard, WidgetData } from "src/app/type";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 import { WidgetLibComponent } from "../../widget-lib/widget-lib.component";
 import { WidgetLibService } from "../../widget-lib/widget-lib.service";
-import { WidgetData } from "src/app/type/widget-data.type";
 import { takeWhile } from "rxjs/operators";
 
 @Component({
@@ -60,6 +59,7 @@ export class PanelComponent implements OnInit, AfterViewInit {
         const index = this.widgets.length + 1;
         // comp -> WidgetComponent
         const comp = this.createWidget(widget);
+        // console.log(comp.location.nativeElement.getBoundingClientRect());
         comp.instance.initialized
           .pipe(takeWhile(() => this.alive))
           .subscribe(({ type, style, widgetData }) => {});

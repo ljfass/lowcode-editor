@@ -1,13 +1,13 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { WidgetCard } from 'src/app/type/widget-card.type';
-import { WidgetLibService } from './widget-lib.service';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Component, OnInit, Renderer2 } from "@angular/core";
+import { FormControl } from "@angular/forms";
+import { WidgetCard } from "src/app/type";
+import { WidgetLibService } from "./widget-lib.service";
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 @Component({
-  selector: 'app-widget-lib',
-  templateUrl: './widget-lib.component.html',
-  styleUrls: ['./widget-lib.component.less'],
+  selector: "app-widget-lib",
+  templateUrl: "./widget-lib.component.html",
+  styleUrls: ["./widget-lib.component.less"],
 })
 export class WidgetLibComponent implements OnInit {
   inputControl = new FormControl();
@@ -19,9 +19,9 @@ export class WidgetLibComponent implements OnInit {
     private rendered2: Renderer2
   ) {
     this.widgetList = this.WidgetLibService.getWidgetLib();
-    this.widgetMap.set('basic', []);
+    this.widgetMap.set("basic", []);
     this.widgetList.forEach((widget: WidgetCard) => {
-      this.widgetMap.get('basic')?.push(widget);
+      this.widgetMap.get("basic")?.push(widget);
     });
   }
 
@@ -31,14 +31,14 @@ export class WidgetLibComponent implements OnInit {
       .subscribe((value: string) => {
         this.widgetList = value
           ? this.widgetList.filter((widget) =>
-              new RegExp(`^.${value}.*$`, 'i').test(widget.name)
+              new RegExp(`^.${value}.*$`, "i").test(widget.name)
             )
           : this.widgetList;
       });
   }
 
   onWidgetDragStart(event: DragEvent, widget: WidgetCard): void {
-    event.dataTransfer?.setData('widgetType', widget.type);
+    event.dataTransfer?.setData("widgetType", widget.type);
   }
 
   onWidgetDragEnd(event: DragEvent): void {}

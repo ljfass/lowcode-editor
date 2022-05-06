@@ -1,9 +1,4 @@
-import { WidgetData } from '../../type/widget-data.type';
-import { IWidgetContent } from '../../type/widget-content.interface';
-import {
-  ButtonSize,
-  ButtonType,
-} from 'src/app/enum/widget-button/attribute.enum';
+import { WidgetData, IWidgetContent } from "../../type";
 
 export abstract class BaseWidgetContent {
   widgetData!: WidgetData<any>;

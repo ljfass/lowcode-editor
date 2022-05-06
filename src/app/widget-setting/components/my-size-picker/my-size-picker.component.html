@@ -1,0 +1,9 @@
+<nz-radio-group
+  [nzSize]="pickerSize"
+  [ngModel]="value"
+  (ngModelChange)="onSelectChange($event)"
+>
+  <label nz-radio-button nzValue="large">large</label>
+  <label nz-radio-button nzValue="small">small</label>
+  <label nz-radio-button nzValue="default">default</label>
+</nz-radio-group>
