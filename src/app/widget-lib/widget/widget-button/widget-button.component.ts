@@ -89,8 +89,8 @@ export class WidgetButtonComponent
   }
 
   // 改变按钮尺寸后重新获取宽度
-  refreshButtonWidgetWidth() {
+  refreshButtonWidgetWidth(size: string) {
     this.widgetData.setting.style.layout.width =
-      this.button?.["elementRef"].nativeElement.offsetWidth;
+      size === "large" ? 64 : size === "default" ? 60 : 44;
   }
 }

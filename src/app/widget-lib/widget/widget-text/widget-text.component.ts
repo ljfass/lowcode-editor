@@ -5,8 +5,9 @@ import {
   ElementRef,
   Renderer2,
 } from "@angular/core";
-import { Position, TextSize } from "src/app/enum";
+import { Position } from "src/app/enum";
 import { WidgetData, TextAttribute } from "src/app/type";
+import { BaseTextWidget } from "../base-text-widget";
 import { BaseWidgetContent } from "../base-widget-content";
 export type TextWidgetData = WidgetData<TextAttribute>;
 
@@ -16,45 +17,20 @@ export type TextWidgetData = WidgetData<TextAttribute>;
   styleUrls: ["./widget-text.component.less"],
 })
 export class WidgetTextComponent
-  extends BaseWidgetContent
+  extends BaseTextWidget
   implements AfterViewInit
 {
   @ViewChild("textEle") textEle!: ElementRef;
   widgetData: TextWidgetData = {
     name: "文本",
     setting: {
-      attribute: {
-        text: "请添加你的文本",
-        size: TextSize.Default,
-        mark: false,
-        delete: false,
-        underlined: false,
-        strong: false,
-      },
+      attribute: this.attribute,
       style: {
         layout: {
           width: 56,
           height: 28,
         },
-        background: {
-          fill: true,
-          opacity: 1,
-        },
-        text: {
-          fontSize: 12,
-          lineHeight: 12,
-          fontWeight: 400,
-        },
-        pos: {
-          position: Position.Static,
-        },
-        radius: 0,
-        border: {
-          fill: true,
-          color: "blue",
-          style: "solid",
-          width: 1,
-        },
+        ...this.apperanceStyle,
       },
     },
   };

@@ -1,6 +1,7 @@
 import { Component, ComponentRef } from "@angular/core";
 import { NzButtonShape } from "ng-zorro-antd/button";
 import { ButtonType } from "src/app/enum";
+import { WidgetButtonComponent } from "src/app/widget-lib/widget/widget-button/widget-button.component";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 
 @Component({
@@ -17,6 +18,9 @@ export class ButtonComponent {
 
   onSizeChange(size: string) {
     this.ref.instance.widgetData.setting.attribute.size = size;
+    (
+      this.ref.instance.contentComponentRef?.instance as WidgetButtonComponent
+    ).refreshButtonWidgetWidth(size);
   }
 
   onTypeChange(type: ButtonType) {

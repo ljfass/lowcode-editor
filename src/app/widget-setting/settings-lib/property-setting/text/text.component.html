@@ -1,17 +1,12 @@
 <p>
-  <span>字体大小</span>
+  <span>占位提示</span>
   <span>
-    <nz-select
+    <input
+      nz-input
       nzSize="small"
-      [ngModel]="ref.instance.widgetData.setting.attribute.size"
-      (ngModelChange)="onFontSelectChange($event)"
-    >
-      <nz-option
-        *ngFor="let item of fontOptions"
-        [nzValue]="item.value"
-        [nzLabel]="item.label"
-      ></nz-option>
-    </nz-select>
+      [ngModel]="ref.instance.widgetData.setting.attribute.placeholder"
+      (ngModelChange)="onPlaceholderChange($event)"
+    />
   </span>
 </p>
 
@@ -27,8 +22,37 @@
     ></textarea>
   </span>
 </p>
-
 <p>
+  <span>尺寸</span>
+  <span>
+    <app-my-size-picker
+      nz-input
+      pickerSize="small"
+      [ngModel]="ref.instance.widgetData.setting.attribute.size"
+      (ngModelChange)="onSizeChange($event)"
+    ></app-my-size-picker>
+  </span>
+</p>
+<p>
+  <nz-input-group nzAddOnBefore="是否禁用" [nzSize]="'small'">
+    <nz-switch
+      [ngModel]="ref.instance.widgetData?.setting?.attribute?.disabled"
+      (ngModelChange)="onDisableChange($event)"
+    ></nz-switch>
+  </nz-input-group>
+</p>
+<p *ngIf="ref.instance.widget.type === 'text-area'">
+  <span>多行文本高度</span>
+  <span>
+    <nz-input-number
+      nzSize="small"
+      [nzMin]="1"
+      [ngModel]="ref?.instance?.widgetData?.setting?.attribute?.rows"
+      (ngModelChange)="onTextRowsChange($event)"
+    ></nz-input-number>
+  </span>
+</p>
+<!-- <p>
   <nz-input-group nzAddOnBefore="标记" [nzSize]="'small'">
     <nz-switch
       [ngModel]="ref.instance.widgetData?.setting?.attribute?.mark"
@@ -62,4 +86,4 @@
       (ngModelChange)="onShowStrongChange($event)"
     ></nz-switch>
   </nz-input-group>
-</p>
+</p> -->

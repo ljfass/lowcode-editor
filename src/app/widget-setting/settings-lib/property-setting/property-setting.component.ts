@@ -42,6 +42,9 @@ export class PropertySettingComponent implements OnChanges {
       case "text":
         this.renderWidgetPropertySetting(TextComponent);
         break;
+      case "text-area":
+        this.renderWidgetPropertySetting(TextComponent);
+        break;
       case "date-picker":
         this.renderWidgetPropertySetting(DatePickerComponent);
         break;

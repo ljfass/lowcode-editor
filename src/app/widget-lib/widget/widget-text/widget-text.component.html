@@ -1,17 +1,32 @@
-<div (dblclick)="onTextWidgetClick($event)" >
-    <span  #textEle
+<!-- <div (dblclick)="onTextWidgetClick($event)">
+  <span
+    #textEle
     [ngStyle]="{
-        'width.px':widgetData.setting.style.layout.width,
-        'height.px':widgetData.setting.style.layout.height,
-        'font-size.px': widgetData.setting.style.text.fontSize,
-        'line-height.px': widgetData.setting.style.text.lineHeight,
-        'font-weight': widgetData.setting?.style?.text?.fontWeight,
-        'opacity': widgetData.setting?.style?.background?.opacity,
-        'background': widgetData.setting.style.background.color?widgetData.setting.style.background.color: 'none',
-        'color': widgetData.setting.style.text.color?widgetData.setting.style.text.color: 'inherit'
+      'width.px': widgetData.setting.style.layout.width,
+      'height.px': widgetData.setting.style.layout.height,
+      'font-size.px': widgetData.setting.style.text.fontSize,
+      'line-height.px': widgetData.setting.style.text.lineHeight,
+      'font-weight': widgetData.setting?.style?.text?.fontWeight,
+      opacity: widgetData.setting?.style?.background?.opacity,
+      background: widgetData.setting.style.background.color
+        ? widgetData.setting.style.background.color
+        : 'none',
+      color: widgetData.setting.style.text.color
+        ? widgetData.setting.style.text.color
+        : 'inherit'
     }"
     [ngClass]="widgetData.setting.attribute.size"
-    (blur)="contentEditableBlur()">
-    {{widgetData.setting.attribute.text}}
-    </span>
-</div>
+    (blur)="contentEditableBlur()"
+  >
+    {{ widgetData.setting.attribute.text }}
+  </span>
+</div> -->
+
+<input
+  nz-input
+  readonly
+  [placeholder]="widgetData.setting.attribute.placeholder"
+  [nzSize]="widgetData.setting.attribute.size"
+  [disabled]="widgetData.setting.attribute.disabled!"
+  [ngModel]="widgetData.setting.attribute.text"
+/>

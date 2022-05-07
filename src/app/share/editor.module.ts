@@ -11,8 +11,11 @@ import { WidgetTextComponent } from "../widget-lib/widget/widget-text/widget-tex
 import { WidgetRightCornerActionComponent } from "../components/widget-right-corner-action/widget-right-corner-action.component";
 import { NzIconModule } from "ng-zorro-antd/icon";
 import { WidgetDatePickerComponent } from "../widget-lib/widget/widget-date-picker/widget-date-picker.component";
+import { MousemoveoutDirective } from "../directives/mousemoveout/mousemoveout.directive";
+import { WidgetTextAreaComponent } from "../widget-lib/widget/widget-text-area/widget-text-area.component";
 
 const components = [
+  WidgetTextAreaComponent,
   WidgetButtonComponent,
   WidgetTextComponent,
   WidgetDatePickerComponent,
@@ -21,7 +24,7 @@ const components = [
   WidgetRightCornerActionComponent,
 ];
 
-const directives = [ContenteditableDirective];
+const directives = [ContenteditableDirective, MousemoveoutDirective];
 
 @NgModule({
   declarations: [...components, ...directives],

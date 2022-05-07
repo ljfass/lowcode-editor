@@ -1,25 +1,26 @@
-<button 
-#button
-nz-button
-[nzType]="widgetData.setting.attribute.type"
-[nzShape]="widgetData.setting.attribute.shape"
-[nzSize]="widgetData.setting.attribute.size"
-[nzLoading]="widgetData.setting.attribute.loading"
-[disabled]="widgetData.setting.attribute.disabled"
-[nzDanger]="widgetData.setting.attribute.danger"
-[nzGhost]="widgetData.setting.attribute.ghost"
-(dblclick)="onButtonDoubleClick($event)"
+<button
+  #button
+  nz-button
+  [nzType]="widgetData.setting.attribute.type"
+  [nzShape]="widgetData.setting.attribute.shape"
+  [nzSize]="widgetData.setting.attribute.size"
+  [nzLoading]="widgetData.setting.attribute.loading"
+  [disabled]="widgetData.setting.attribute.disabled"
+  [nzDanger]="widgetData.setting.attribute.danger"
+  [nzGhost]="widgetData.setting.attribute.ghost"
+  (dblclick)="onButtonDoubleClick($event)"
 >
   <ng-container *ngIf="readonly">
     {{ widgetData.setting?.attribute?.buttonText }}
   </ng-container>
   <ng-container *ngIf="!readonly">
-    <span class="editable-content" #editableSpan [contenteditableModel]="buttonText" 
-    (onValueChange)="contentEditableBlur($event)"
+    <span
+      class="editable-content"
+      #editableSpan
+      [contenteditableModel]="buttonText"
+      (onValueChange)="contentEditableBlur($event)"
     >
-     {{  widgetData.setting?.attribute?.buttonText }}</span>
+      {{ widgetData.setting?.attribute?.buttonText }}</span
+    >
   </ng-container>
 </button>
-
-
-

@@ -23,14 +23,17 @@
 
     <!-- Right sidebar -->
     <nav class="main_container_right">
-      <div [ngClass]="{'content-panel':true,'no-selected-widget': !selectedWidgets.length}">
+      <div
+        [ngClass]="{
+          'content-panel': true,
+          'no-selected-widget': !selectedWidgets.length
+        }"
+      >
         <app-widget-setting
           [ref]="selectedWidgets[0]"
           *ngIf="selectedWidgets.length === 1"
         ></app-widget-setting>
-        <div *ngIf="!selectedWidgets.length">
-          请在左侧画布选中节点
-        </div>
+        <div *ngIf="!selectedWidgets.length">请在左侧画布选中节点</div>
       </div>
     </nav>
   </main>

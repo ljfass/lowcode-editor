@@ -1,10 +1,12 @@
 <div
+  appMouseMoveOut
+  #widgetWrapper
   class="widget-wrapper"
   [ngClass]="{
     selected: !!status
   }"
-  #widgetWrapper
   (mousedown)="onMouseEvent($event)"
+  (emitMouseType)="onMouseMoveEvent($event)"
 >
   <div class="widget">
     <div class="widget-name">{{ widget.name }}</div>
@@ -18,12 +20,9 @@
 </div>
 
 <div
-  [ngStyle]="{
-    position: 'absolute',
-    border: '1px solid orange',
-    'left.px': widgetStyle.left,
-    'top.px': widgetStyle.top,
-    'width.px': widgetStyle.width,
-    'height.px': widgetStyle.height
-  }"
-></div>
+  class="widget-profie"
+  *ngIf="profileTemporary$ | async"
+  [ngStyle]="(profileTemporary$ | async).styleContent"
+>
+  <div class="inner"></div>
+</div>

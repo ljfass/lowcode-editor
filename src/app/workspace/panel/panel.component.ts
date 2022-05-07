@@ -80,6 +80,7 @@ export class PanelComponent implements OnInit, AfterViewInit {
     if (widgetData) {
       comp.instance.widgetData = widgetData;
     }
+    comp.instance.componentRef = comp;
     comp.instance.widget = widget;
     comp.instance.widgets = this.widgets;
     comp.instance.selectWidget

@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NzIconModule } from "ng-zorro-antd/icon";
 import { DeleteOutline, DeleteFill } from "@ant-design/icons-angular/icons";
 import { IconDefinition } from "@ant-design/icons-angular";
+import { WidgetTextAreaComponent } from "./widget-lib/widget/widget-text-area/widget-text-area.component";
 const icons: IconDefinition[] = [DeleteOutline, DeleteFill];
 @NgModule({
   declarations: [AppComponent],

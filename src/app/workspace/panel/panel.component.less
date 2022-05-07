@@ -38,23 +38,24 @@
     }
 
     .main_container_middle {
-      // background: #ccc;
       min-width: 200px;
       /* 取剩余宽度 */
       flex-grow: 1;
       padding: 10px;
-      // background-color: #fff;
       .viewport {
         width: 100%;
         height: 100%;
         padding: 20px;
-        display: flex;
+        display: grid;
+        // flex-wrap: wrap;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+
       }
     }
 
     .main_container_right {
-      width: 20%;
-      min-width: 200px;
+      min-width: 240px;
       background-color: #fff;
       border-radius: 2px;
       .content-panel {

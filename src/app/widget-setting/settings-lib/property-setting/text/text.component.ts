@@ -38,4 +38,20 @@ export class TextComponent {
   onTextAreaChange(value: string) {
     this.ref.instance.widgetData.setting.attribute.text = value;
   }
+
+  onPlaceholderChange(val: string) {
+    this.ref.instance.widgetData.setting.attribute.placeholder = val;
+  }
+
+  onSizeChange(size: string) {
+    this.ref.instance.widgetData.setting.attribute.size = size;
+  }
+
+  onDisableChange(val: boolean) {
+    this.ref.instance.widgetData.setting.attribute.disabled = val;
+  }
+
+  onTextRowsChange(val: number) {
+    this.ref.instance.widgetData.setting.attribute.rows = val;
+  }
 }

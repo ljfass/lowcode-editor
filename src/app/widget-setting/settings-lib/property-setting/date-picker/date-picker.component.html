@@ -35,13 +35,12 @@
   <span>
     <app-my-size-picker
       nz-input
-      pickerSize="default"
+      pickerSize="small"
       [ngModel]="ref.instance.widgetData.setting.attribute.size"
       (ngModelChange)="onSizeChange($event)"
     ></app-my-size-picker>
   </span>
 </p>
-
 <p>
   <nz-input-group nzAddOnBefore="是否禁用" [nzSize]="'small'">
     <nz-switch

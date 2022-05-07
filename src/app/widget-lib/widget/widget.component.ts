@@ -17,11 +17,11 @@ import {
   EventEmitter,
   ElementRef,
 } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 import { WidgetCard, WidgetData } from "src/app/type";
 import { WidgetStatus } from "../../enum";
 import { BaseWidgetContent } from "./base-widget-content";
 import { WidgetService } from "./widget.service";
-
 @Component({
   selector: "app-widget",
   templateUrl: "./widget.component.html",
@@ -40,16 +40,22 @@ export class WidgetComponent
 
   /** 当前组件状态 */
   status = WidgetStatus.None;
-
+  showWidgetOutStyle = false;
+  componentRef?: ComponentRef<WidgetComponent>;
   contentComponentRef?: ComponentRef<BaseWidgetContent>;
   widgetData!: WidgetData<any>;
-  public widgetStyle = {
+  widgetStyle: { [key: string]: any } = {
     width: 0,
     height: 0,
     left: 0,
     top: 0,
   };
   @ViewChild("widgetWrapper") widgetEle!: ElementRef;
+  profileTemporary$: BehaviorSubject<any> = new BehaviorSubject(null);
+
+  get scopeEnchantment() {
+    return this.widgetSrv.widgetProfileModel;
+  }
 
   constructor(
     private widgetSrv: WidgetService,
@@ -76,16 +82,9 @@ export class WidgetComponent
       widgetData: this.widgetData,
     });
     this.cdr.detectChanges();
-
-    this.widgetStyle = {
-      width: this.widgetEle.nativeElement.offsetWidth,
-      height: this.widgetEle.nativeElement.offsetHeight,
-      left: this.widgetEle.nativeElement.offsetLeft,
-      top: this.widgetEle.nativeElement.offsetTop,
-    };
-    this.cdr.detectChanges();
   }
 
+  // 创建具体的组件
   createContentComponent(): ComponentRef<BaseWidgetContent> {
     const factory: ComponentFactory<BaseWidgetContent> =
       this.resolver.resolveComponentFactory(this.widget.component);
@@ -110,13 +109,33 @@ export class WidgetComponent
     this.cdr.detectChanges();
   }
 
-  onMouseEvent(event: MouseEvent) {
-    event.stopPropagation();
-    this.setSelected(event.ctrlKey);
-  }
-
   setSelected(multi: boolean = false): void {
     this.setStatus(WidgetStatus.Select);
     this.selectWidget.emit({ multi });
+  }
+
+  // 点击一个组件
+  onMouseEvent(event: MouseEvent) {
+    event.stopPropagation();
+    this.profileTemporary$.next(false);
+    this.setSelected(event.ctrlKey);
+  }
+
+  // 接受组件的鼠标移入和移除操作
+  onMouseMoveEvent(type: string) {
+    const value = !!this.status ? false : type === "enter" ? true : false;
+    const boundingClientRect =
+      this.widgetEle.nativeElement.getBoundingClientRect();
+    this.widgetSrv.handleWidgetStyleUpdate({
+      left: Number(boundingClientRect.x.toFixed()) - 1,
+      top: Number(boundingClientRect.y.toFixed()) - 1,
+      width: Number(boundingClientRect.width.toFixed()) + 2,
+      height: Number(boundingClientRect.height.toFixed()) + 2,
+    });
+    if (value) {
+      this.profileTemporary$.next(this.scopeEnchantment);
+    } else {
+      this.profileTemporary$.next(null);
+    }
   }
 }
