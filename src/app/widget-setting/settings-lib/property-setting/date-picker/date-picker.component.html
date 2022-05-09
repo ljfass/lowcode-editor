@@ -4,7 +4,7 @@
     <input
       nz-input
       nzSize="default"
-      [ngModel]="ref.instance.widgetData.setting.attribute.placeholder"
+      [ngModel]="attribute.placeholder"
       (ngModelChange)="onPlaceholderChange($event)"
     />
   </span>
@@ -14,7 +14,7 @@
   <span>
     <nz-date-picker
       nzSize="default"
-      [ngModel]="ref.instance.widgetData.setting.attribute.default"
+      [ngModel]="attribute.default"
       (ngModelChange)="onDefaultValueChange($event)"
     ></nz-date-picker>
   </span>
@@ -25,7 +25,7 @@
     <input
       nzSize="default"
       nz-input
-      [ngModel]="ref.instance.widgetData.setting.attribute.format"
+      [ngModel]="attribute.format"
       (ngModelChange)="onFormatChange($event)"
     />
   </span>
@@ -36,24 +36,26 @@
     <app-my-size-picker
       nz-input
       pickerSize="small"
-      [ngModel]="ref.instance.widgetData.setting.attribute.size"
+      [ngModel]="attribute.size"
       (ngModelChange)="onSizeChange($event)"
     ></app-my-size-picker>
   </span>
 </p>
 <p>
-  <nz-input-group nzAddOnBefore="是否禁用" [nzSize]="'small'">
+  <span>是否禁用</span>
+  <span>
     <nz-switch
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.disabled"
+      [ngModel]="attribute.disabled"
       (ngModelChange)="onDisableChange($event)"
     ></nz-switch>
-  </nz-input-group>
+  </span>
 </p>
 <p>
-  <nz-input-group nzAddOnBefore="清除按钮" [nzSize]="'small'">
+  <span> 清除按钮 </span>
+  <span>
     <nz-switch
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.allowClear"
+      [ngModel]="attribute.allowClear"
       (ngModelChange)="onAllowClearChange($event)"
     ></nz-switch>
-  </nz-input-group>
+  </span>
 </p>

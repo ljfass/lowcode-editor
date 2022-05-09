@@ -1,13 +1,15 @@
-import { Position } from "src/app/enum";
-import { TextAttribute, WidgetData } from "src/app/type";
-import { BaseWidgetContent } from "./base-widget-content";
+import { InputType, Position } from "src/app/enum";
+import { TextAttribute } from "src/app/type";
+import { BasicBaseWidgetContent } from "./base-widget-content";
 
-export class BaseTextWidget extends BaseWidgetContent {
+export class BaseTextWidget extends BasicBaseWidgetContent {
   attribute: TextAttribute = {
     text: "",
+    inputType: InputType.Single,
     placeholder: "请输入",
     size: "default",
     disabled: false,
+    rows: 4,
   };
 
   apperanceStyle = {

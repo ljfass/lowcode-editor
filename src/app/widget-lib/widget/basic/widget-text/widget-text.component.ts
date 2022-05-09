@@ -4,11 +4,11 @@ import {
   ViewChild,
   ElementRef,
   Renderer2,
+  TemplateRef,
+  ViewContainerRef,
 } from "@angular/core";
-import { Position } from "src/app/enum";
 import { WidgetData, TextAttribute } from "src/app/type";
 import { BaseTextWidget } from "../base-text-widget";
-import { BaseWidgetContent } from "../base-widget-content";
 export type TextWidgetData = WidgetData<TextAttribute>;
 
 @Component({
@@ -21,9 +21,13 @@ export class WidgetTextComponent
   implements AfterViewInit
 {
   @ViewChild("textEle") textEle!: ElementRef;
+  @ViewChild(TemplateRef, { read: ViewContainerRef })
+  textArea!: ViewContainerRef;
+  type!: string;
   widgetData: TextWidgetData = {
     name: "文本",
     setting: {
+      type: "",
       attribute: this.attribute,
       style: {
         layout: {

@@ -16,10 +16,6 @@ export class WidgetService {
     this.statusSubject$.next(status);
   }
 
-  getSelectStatus(): Observable<WidgetStatus> {
-    return this.statusSubject$.asObservable();
-  }
-
   handleWidgetStyleUpdate(newStyle: { [key: string]: any }) {
     this.widgetProfileStyle$.next(newStyle);
     this._widgetProfileModel.setData({

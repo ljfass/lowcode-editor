@@ -21,12 +21,25 @@
     {{ widgetData.setting.attribute.text }}
   </span>
 </div> -->
-
 <input
+  *ngIf="
+    widgetAttribute.inputType === 'single' ||
+    widgetAttribute.inputType === 'secure'
+  "
+  [type]="widgetAttribute.inputType === 'secure' ? 'password' : 'text'"
   nz-input
   readonly
-  [placeholder]="widgetData.setting.attribute.placeholder"
-  [nzSize]="widgetData.setting.attribute.size"
-  [disabled]="widgetData.setting.attribute.disabled!"
-  [ngModel]="widgetData.setting.attribute.text"
+  [placeholder]="widgetAttribute.placeholder"
+  [nzSize]="widgetAttribute.size"
+  [disabled]="widgetAttribute.disabled!"
+  [ngModel]="widgetAttribute.text"
 />
+<textarea
+  *ngIf="widgetAttribute.inputType === 'multiple'"
+  nz-input
+  [rows]="widgetAttribute.rows"
+  [ngModel]="widgetAttribute.text"
+  readonly
+  [placeholder]="widgetAttribute.placeholder"
+  [disabled]="widgetAttribute.disabled!"
+></textarea>

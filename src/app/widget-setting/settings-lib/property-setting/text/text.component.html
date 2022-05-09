@@ -4,7 +4,7 @@
     <input
       nz-input
       nzSize="small"
-      [ngModel]="ref.instance.widgetData.setting.attribute.placeholder"
+      [ngModel]="attribute.placeholder"
       (ngModelChange)="onPlaceholderChange($event)"
     />
   </span>
@@ -17,37 +17,61 @@
       nzSize="small"
       rows="3"
       nz-input
-      [ngModel]="ref.instance.widgetData.setting.attribute.text"
+      [ngModel]="attribute.text"
       (ngModelChange)="onTextAreaChange($event)"
     ></textarea>
   </span>
 </p>
-<p>
+<p *ngIf="attribute.inputType !== 'multiple'">
   <span>尺寸</span>
   <span>
     <app-my-size-picker
       nz-input
       pickerSize="small"
-      [ngModel]="ref.instance.widgetData.setting.attribute.size"
+      [ngModel]="attribute.size"
       (ngModelChange)="onSizeChange($event)"
     ></app-my-size-picker>
   </span>
 </p>
 <p>
-  <nz-input-group nzAddOnBefore="是否禁用" [nzSize]="'small'">
+  <span>是否禁用</span>
+  <span>
     <nz-switch
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.disabled"
+      [ngModel]="attribute.disabled"
       (ngModelChange)="onDisableChange($event)"
     ></nz-switch>
-  </nz-input-group>
+  </span>
 </p>
-<p *ngIf="ref.instance.widget.type === 'text-area'">
+<p>
+  <span>自动去除头尾空字符</span>
+  <span>
+    <nz-switch
+      [ngModel]="attribute.trim"
+      (ngModelChange)="onTextTrimChange($event)"
+    ></nz-switch>
+  </span>
+</p>
+<p>
+  <span>类型</span>
+  <span>
+    <nz-radio-group
+      nzSize="small"
+      [ngModel]="attribute.inputType"
+      (ngModelChange)="onInputTypeChange($event)"
+    >
+      <label nz-radio-button nzValue="single"><span>单行</span></label>
+      <label nz-radio-button nzValue="multiple"><span>多行</span></label>
+      <label nz-radio-button nzValue="secure"><span>密码</span></label>
+    </nz-radio-group>
+  </span>
+</p>
+<p *ngIf="attribute.inputType === 'multiple'">
   <span>多行文本高度</span>
   <span>
     <nz-input-number
       nzSize="small"
       [nzMin]="1"
-      [ngModel]="ref?.instance?.widgetData?.setting?.attribute?.rows"
+      [ngModel]="attribute.rows"
       (ngModelChange)="onTextRowsChange($event)"
     ></nz-input-number>
   </span>
@@ -55,7 +79,7 @@
 <!-- <p>
   <nz-input-group nzAddOnBefore="标记" [nzSize]="'small'">
     <nz-switch
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.mark"
+      [ngModel]="attribute.mark"
       (ngModelChange)="onShowMarkChange($event)"
     ></nz-switch>
   </nz-input-group>
@@ -64,7 +88,7 @@
 <p>
   <nz-input-group nzAddOnBefore="删除线" [nzSize]="'small'">
     <nz-switch
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.delete"
+      [ngModel]="attribute.delete"
       (ngModelChange)="onShowDeleteChange($event)"
     ></nz-switch>
   </nz-input-group>
@@ -73,7 +97,7 @@
 <p>
   <nz-input-group nzAddOnBefore="下划线" [nzSize]="'small'">
     <nz-switch
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.underlined"
+      [ngModel]="attribute.underlined"
       (ngModelChange)="onShowUnderlineChange($event)"
     ></nz-switch>
   </nz-input-group>
@@ -82,7 +106,7 @@
 <p>
   <nz-input-group nzAddOnBefore="是否加粗" [nzSize]="'small'">
     <nz-switch
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.strong"
+      [ngModel]="attribute.strong"
       (ngModelChange)="onShowStrongChange($event)"
     ></nz-switch>
   </nz-input-group>

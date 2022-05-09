@@ -9,34 +9,43 @@ import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 export class DatePickerComponent {
   constructor(public ref: ComponentRef<WidgetComponent>) {}
 
+  get attribute() {
+    return this.ref.instance.contentComponentRef!.instance.widgetData.setting
+      .attribute;
+  }
+
   // 占位提示修改
   onPlaceholderChange(val: string) {
-    this.ref.instance.widgetData.setting.attribute.placeholder = val;
+    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.placeholder =
+      val;
   }
 
   // 默认值修改
   onDefaultValueChange(date: Date) {
-    this.ref.instance.widgetData.setting.attribute.default = Date.parse(
-      date.toString()
-    );
+    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.default =
+      Date.parse(date.toString());
   }
   // 格式修改
   onFormatChange(val: string) {
-    this.ref.instance.widgetData.setting.attribute.farmat = val;
+    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.farmat =
+      val;
   }
 
   // 格式修改
   onSizeChange(val: string) {
-    this.ref.instance.widgetData.setting.attribute.size = val;
+    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.size =
+      val;
   }
 
   // 是否禁用
   onDisableChange(val: boolean) {
-    this.ref.instance.widgetData.setting.attribute.disabled = val;
+    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.disabled =
+      val;
   }
 
   // 是否显示清除按钮
   onAllowClearChange(val: boolean) {
-    this.ref.instance.widgetData.setting.attribute.allowClear = val;
+    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.allowClear =
+      val;
   }
 }

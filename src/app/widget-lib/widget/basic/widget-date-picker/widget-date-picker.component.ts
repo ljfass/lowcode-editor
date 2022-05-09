@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { NzDatePickerSizeType } from "ng-zorro-antd/date-picker";
 import { DatePickerSize, Position } from "src/app/enum";
 import { WidgetData, DatePickerAttribute } from "src/app/type";
-import { BaseWidgetContent } from "../base-widget-content";
+import { BasicBaseWidgetContent } from "../base-widget-content";
 
 export type DatePickerWidgetData = WidgetData<DatePickerAttribute>;
 
@@ -12,12 +12,13 @@ export type DatePickerWidgetData = WidgetData<DatePickerAttribute>;
   styleUrls: ["./widget-date-picker.component.less"],
 })
 export class WidgetDatePickerComponent
-  extends BaseWidgetContent
+  extends BasicBaseWidgetContent
   implements OnInit
 {
   widgetData: DatePickerWidgetData = {
     name: "日期选择框",
     setting: {
+      type: "",
       attribute: {
         placeholder: "请选择日期",
         default: Date.parse(new Date().toString()),

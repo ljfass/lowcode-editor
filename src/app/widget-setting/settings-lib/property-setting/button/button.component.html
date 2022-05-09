@@ -3,7 +3,7 @@
     <nz-input-group nzAddOnBefore="按钮内容" [nzSize]="'small'">
       <input
         nz-input
-        [ngModel]="ref.instance.widgetData?.setting?.attribute?.buttonText"
+        [ngModel]="attribute.buttonText"
         (ngModelChange)="onInputChange($event)"
       />
     </nz-input-group>
@@ -13,7 +13,7 @@
   <nz-input-group nzAddOnBefore="按钮尺寸" [nzSize]="'small'">
     <app-my-size-picker
       pickerSize="small"
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.size"
+      [ngModel]="attribute.size"
       (ngModelChange)="onSizeChange($event)"
     >
     </app-my-size-picker>
@@ -23,7 +23,7 @@
   <nz-input-group nzAddOnBefore="按钮类型" [nzSize]="'small'">
     <nz-radio-group
       nzSize="small"
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.type"
+      [ngModel]="attribute.type"
       (ngModelChange)="onTypeChange($event)"
     >
       <label nz-radio-button nzValue="primary">primary</label>
@@ -37,7 +37,7 @@
   <nz-input-group nzAddOnBefore="按钮形状" [nzSize]="'small'">
     <nz-radio-group
       nzSize="small"
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.shape"
+      [ngModel]="attribute.shape"
       (ngModelChange)="onShapeChange($event)"
     >
       <label nz-radio-button [nzValue]="null">default</label>
@@ -49,7 +49,7 @@
 <div class="property-setting-item">
   <nz-input-group nzAddOnBefore="幽灵按钮" [nzSize]="'small'">
     <nz-switch
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.ghost"
+      [ngModel]="attribute.ghost"
       (ngModelChange)="onGhostChange($event)"
     ></nz-switch>
   </nz-input-group>
@@ -57,7 +57,7 @@
 <div class="property-setting-item">
   <nz-input-group nzAddOnBefore="禁用" [nzSize]="'small'">
     <nz-switch
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.disabled"
+      [ngModel]="attribute.disabled"
       (ngModelChange)="onDisableChange($event)"
     ></nz-switch>
   </nz-input-group>
@@ -65,7 +65,7 @@
 <div class="property-setting-item">
   <nz-input-group nzAddOnBefore="loading" [nzSize]="'small'">
     <nz-switch
-      [ngModel]="ref.instance.widgetData?.setting?.attribute?.loading"
+      [ngModel]="attribute.loading"
       (ngModelChange)="onLoadingChange($event)"
     ></nz-switch>
   </nz-input-group>

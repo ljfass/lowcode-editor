@@ -13,7 +13,8 @@ export class BackgroundComponent {
 
   onColorPickerChange(color: string) {
     (
-      this.ref.instance.widgetData as WidgetData<any>
+      this.ref.instance.contentComponentRef!.instance
+        .widgetData as WidgetData<any>
     ).setting.style.background.color = color;
   }
 }

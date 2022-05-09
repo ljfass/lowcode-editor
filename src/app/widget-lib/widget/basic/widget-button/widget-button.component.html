@@ -1,0 +1,25 @@
+<button
+  #button
+  nz-button
+  [nzType]="widgetAttribute.type"
+  [nzShape]="widgetAttribute.shape"
+  [nzSize]="widgetAttribute.size"
+  [nzLoading]="widgetAttribute.loading"
+  [disabled]="widgetAttribute.disabled"
+  [nzDanger]="widgetAttribute.danger"
+  [nzGhost]="widgetAttribute.ghost"
+>
+  <ng-container *ngIf="readonly">
+    {{ widgetAttribute.buttonText }}
+  </ng-container>
+  <ng-container *ngIf="!readonly">
+    <span
+      class="editable-content"
+      #editableSpan
+      [contenteditableModel]="buttonText"
+      (onValueChange)="contentEditableBlur($event)"
+    >
+      {{ widgetAttribute.buttonText }}</span
+    >
+  </ng-container>
+</button>

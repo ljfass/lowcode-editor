@@ -5,10 +5,13 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NzIconModule } from "ng-zorro-antd/icon";
-import { DeleteOutline, DeleteFill } from "@ant-design/icons-angular/icons";
+import {
+  DeleteOutline,
+  DeleteFill,
+  DragOutline,
+} from "@ant-design/icons-angular/icons";
 import { IconDefinition } from "@ant-design/icons-angular";
-import { WidgetTextAreaComponent } from "./widget-lib/widget/widget-text-area/widget-text-area.component";
-const icons: IconDefinition[] = [DeleteOutline, DeleteFill];
+const icons: IconDefinition[] = [DeleteOutline, DragOutline, DeleteFill];
 @NgModule({
   declarations: [AppComponent],
   imports: [

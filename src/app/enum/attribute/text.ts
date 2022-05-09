@@ -3,3 +3,9 @@ export enum TextSize {
   Small = "small",
   Large = "large",
 }
+
+export enum InputType {
+  Single = "single",
+  Multiple = "multiple",
+  Secure = "secure",
+}

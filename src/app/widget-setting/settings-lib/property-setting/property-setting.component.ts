@@ -12,6 +12,8 @@ import {
 } from "@angular/core";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 import { ButtonComponent, TextComponent, DatePickerComponent } from "./index";
+import { WidgetLibService } from "src/app/widget-lib/widget-lib.service";
+import { WidgetCard } from "src/app/type";
 
 @Component({
   selector: "app-property-setting",
@@ -24,6 +26,7 @@ export class PropertySettingComponent implements OnChanges {
   propertyRender!: ViewContainerRef;
 
   constructor(
+    private widgetSrv: WidgetLibService,
     private cdr: ChangeDetectorRef,
     private resolver: ComponentFactoryResolver
   ) {}
@@ -35,20 +38,19 @@ export class PropertySettingComponent implements OnChanges {
   }
 
   renderSetting(type: string) {
-    switch (type) {
-      case "button":
-        this.renderWidgetPropertySetting(ButtonComponent);
-        break;
-      case "text":
-        this.renderWidgetPropertySetting(TextComponent);
-        break;
-      case "text-area":
-        this.renderWidgetPropertySetting(TextComponent);
-        break;
-      case "date-picker":
-        this.renderWidgetPropertySetting(DatePickerComponent);
-        break;
-    }
+    let widgetConfig: {
+      [key: string]: any;
+    } = {};
+    this.widgetSrv.getWidgetLib().forEach((item: WidgetCard) => {
+      const key = item["type"];
+      const comp = item["settingComponent"];
+      widgetConfig = {
+        ...widgetConfig,
+        [key]: comp,
+      };
+    });
+
+    this.renderWidgetPropertySetting(widgetConfig[type]);
   }
 
   renderWidgetPropertySetting(component: any) {

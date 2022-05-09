@@ -10,16 +10,22 @@ import { WidgetComponent } from "../../../../widget-lib/widget/widget.component"
 })
 export class LayoutComponent {
   constructor(public ref: ComponentRef<WidgetComponent>) {}
-  widgetData!: WidgetData<any>;
+
+  get style() {
+    return this.ref.instance.contentComponentRef!.instance.widgetData.setting
+      .style;
+  }
 
   onWidgetHeight(val: number) {
     (
-      this.ref.instance.widgetData as WidgetData<any>
+      this.ref.instance.contentComponentRef!.instance
+        .widgetData as WidgetData<any>
     ).setting.style.layout.height = val;
   }
   onWidgetWidth(val: number) {
     (
-      this.ref.instance.widgetData as WidgetData<any>
+      this.ref.instance.contentComponentRef!.instance
+        .widgetData as WidgetData<any>
     ).setting.style.layout.width = val;
   }
 

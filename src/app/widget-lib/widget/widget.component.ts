@@ -16,11 +16,12 @@ import {
   ViewContainerRef,
   EventEmitter,
   ElementRef,
+  Injector,
 } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { WidgetCard, WidgetData } from "src/app/type";
-import { WidgetStatus } from "../../enum";
-import { BaseWidgetContent } from "./base-widget-content";
+import { WidgetCard } from "src/app/type";
+import { InputType, WidgetStatus } from "../../enum";
+import { BasicBaseWidgetContent } from "./basic/base-widget-content";
 import { WidgetService } from "./widget.service";
 @Component({
   selector: "app-widget",
@@ -40,10 +41,9 @@ export class WidgetComponent
 
   /** 当前组件状态 */
   status = WidgetStatus.None;
-  showWidgetOutStyle = false;
   componentRef?: ComponentRef<WidgetComponent>;
-  contentComponentRef?: ComponentRef<BaseWidgetContent>;
-  widgetData!: WidgetData<any>;
+  contentComponentRef?: ComponentRef<BasicBaseWidgetContent>;
+  // widgetData!: WidgetData<any>;
   widgetStyle: { [key: string]: any } = {
     width: 0,
     height: 0,
@@ -79,22 +79,27 @@ export class WidgetComponent
     // 拖拽出来后立即选中
     this.initialized.emit({
       type: this.widget.type,
-      widgetData: this.widgetData,
     });
     this.cdr.detectChanges();
   }
 
   // 创建具体的组件
-  createContentComponent(): ComponentRef<BaseWidgetContent> {
-    const factory: ComponentFactory<BaseWidgetContent> =
+  createContentComponent(): ComponentRef<BasicBaseWidgetContent> {
+    this.container.clear();
+    const factory: ComponentFactory<BasicBaseWidgetContent> =
       this.resolver.resolveComponentFactory(this.widget.component);
-    const component: ComponentRef<BaseWidgetContent> =
+
+    const component: ComponentRef<BasicBaseWidgetContent> =
       this.container.createComponent(factory);
-    if (this.widgetData) {
-      component.instance.widgetData = this.widgetData;
-    } else {
-      this.widgetData = component.instance.widgetData;
-    }
+    if (this.widget.type === "text-area")
+      component.instance.widgetData.setting.attribute.inputType =
+        InputType.Multiple;
+    component.instance.widgetData.setting.type = this.widget.type;
+    // if (this.widgetData) {
+    //   component.instance.widgetData = this.widgetData;
+    // } else {
+    //   this.widgetData = component.instance.widgetData;
+    // }
     return component;
   }
 

@@ -12,6 +12,7 @@ import { NzTabsModule } from "ng-zorro-antd/tabs";
 import { NzPopoverModule } from "ng-zorro-antd/popover";
 import { NzCollapseModule } from "ng-zorro-antd/collapse";
 import { NzSliderModule } from "ng-zorro-antd/slider";
+import { NzTableModule } from "ng-zorro-antd/table";
 import { NZ_I18N } from "ng-zorro-antd/i18n";
 import { zh_CN } from "ng-zorro-antd/i18n";
 import { registerLocaleData, CommonModule } from "@angular/common";
@@ -37,6 +38,7 @@ registerLocaleData(zh);
     NzSliderModule,
     NzDatePickerModule,
     NzPopoverModule,
+    NzTableModule,
   ],
 })
 export class NgZorroAntdModule {}

@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 import { NzButtonComponent } from "ng-zorro-antd/button";
-import { ButtonSize, Position, ButtonType } from "../../../enum";
+import { ButtonSize, Position, ButtonType } from "../../../../enum";
 import { ButtonAttribute, WidgetData } from "src/app/type";
-import { BaseWidgetContent } from "../base-widget-content";
+import { BasicBaseWidgetContent } from "../base-widget-content";
 
 export type ButtonWidgetData = WidgetData<ButtonAttribute>;
 
@@ -12,12 +12,13 @@ export type ButtonWidgetData = WidgetData<ButtonAttribute>;
   styleUrls: ["./widget-button.component.less"],
 })
 export class WidgetButtonComponent
-  extends BaseWidgetContent
+  extends BasicBaseWidgetContent
   implements AfterViewInit
 {
   widgetData: ButtonWidgetData = {
     name: "按钮",
     setting: {
+      type: "",
       attribute: {
         buttonText: "取消",
         type: ButtonType.Primary,

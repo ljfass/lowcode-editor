@@ -5,4 +5,5 @@ export type WidgetCard = {
   height?: number;
   icon?: string;
   component: any;
+  settingComponent: any;
 };
