@@ -1,0 +1,23 @@
+<nz-collapse>
+  <nz-collapse-panel
+    [nzHeader]="_panel.name"
+    [nzActive]="panelMode !== 'default' ? false : _panel.active"
+    [nzDisabled]="panelMode !== 'default' ? true : _panel.disabled"
+    [nzShowArrow]="false"
+    [nzExtra]="extraTpl"
+    (nzActiveChange)="handlePanelCollapse($event)"
+    (click)="handlePaneJump($event)"
+  >
+    <ng-content *ngIf="panelMode === 'default'"></ng-content>
+  </nz-collapse-panel>
+</nz-collapse>
+
+<ng-template #extraTpl>
+  <ng-container *ngIf="panelMode === 'default'">
+    <i *ngIf="panelActive" nz-icon nzType="up" nzTheme="outline"></i>
+    <i *ngIf="!panelActive" nz-icon nzType="down" nzTheme="outline"></i>
+  </ng-container>
+  <ng-container *ngIf="panelMode === 'jump'">
+    <i nz-icon nzType="right" nzTheme="outline"></i>
+  </ng-container>
+</ng-template>
