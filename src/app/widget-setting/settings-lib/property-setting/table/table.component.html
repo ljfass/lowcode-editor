@@ -1,1 +1,8 @@
-<app-columns-setting-item></app-columns-setting-item>
+<app-widget-setting-collapse-pane
+  [panel]="dataColumnsObject.panel"
+  (onActiveChange)="test($event)"
+>
+  <app-sortable-columns-list
+    [columnList]="dataColumnsObject.columns"
+  ></app-sortable-columns-list>
+</app-widget-setting-collapse-pane>

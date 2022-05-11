@@ -18,7 +18,6 @@ export class WidgetButtonComponent
   widgetData: ButtonWidgetData = {
     name: "按钮",
     setting: {
-      type: "",
       attribute: {
         buttonText: "取消",
         type: ButtonType.Primary,

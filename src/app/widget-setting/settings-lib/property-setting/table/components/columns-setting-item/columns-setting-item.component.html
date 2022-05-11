@@ -4,16 +4,31 @@
   </div>
   <div class="input">
     <div class="input-wrap">
-      <input nz-input placeholder="请输入" [(ngModel)]="title" />
+      <input nz-input placeholder="请输入" [ngModel]="title" />
     </div>
     <div class="input-wrap">
-      <input nz-input placeholder="请输入" [(ngModel)]="name" />
+      <input nz-input placeholder="请输入" [ngModel]="name" />
     </div>
   </div>
 
   <div class="action">
-    <div class="action-wrap"></div>
-    <div class="action-wrap"></div>
+    <div class="action-wrap" (click)="onEdit.emit($event)">
+      <i
+        nz-tooltip
+        nzTooltipTitle="编辑"
+        nz-icon
+        nzType="form"
+        nzTheme="outline"
+      ></i>
+    </div>
+    <div class="action-wrap">
+      <i
+        nz-tooltip
+        nzTooltipTitle="删除"
+        nz-icon
+        nzType="delete"
+        nzTheme="outline"
+      ></i>
+    </div>
   </div>
 </div>
-<i nz-icon nzType="drag" nzTheme="outline"></i>

@@ -2,17 +2,18 @@
     display: flex;
     align-items: center;
     position: relative;
-    padding: 10px;
-    background-color: #fafafa;
+    padding: 6px;
+    background-color: #f7f7f7;
+    border-radius: 4px;
     .drag-item {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         cursor: move;
         i {
-            color: red;
+            opacity: .6;
         }
     }
     .input {
@@ -20,11 +21,25 @@
         align-items: center;
         flex: 1;
         margin-right: 45px;
+        margin-left: 4px;
         .input-wrap{
             width: 50%;
+            margin: 4px 0;
+            padding: 0 2px;
         }
     }
-    .action-wrap{
+    .action{
         position: absolute;
+        right: 6px;
+        top: 15px;
+        display: flex;
+        align-items: center;
+        .action-wrap {
+            cursor: pointer;
+            margin-left: 3px;
+            i{
+                font-size: 16px;
+            }
+        }
     }
 }

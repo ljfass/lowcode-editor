@@ -35,19 +35,12 @@ export class StyleSettingComponent implements OnChanges, AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    if (
-      this.ref.instance.contentComponentRef?.instance.widgetData.setting
-        .type !== "table"
-    )
-      this.renderSetting();
+    if (this.ref.instance.widget.type !== "table") this.renderSetting();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.ref && !changes.ref.firstChange) {
-      if (
-        changes.ref.currentValue.instance.contentComponentRef?.instance
-          .widgetData.setting.type !== "table"
-      )
+      if (changes.ref.currentValue.instance.widget.type !== "table")
         this.renderSetting();
     }
   }

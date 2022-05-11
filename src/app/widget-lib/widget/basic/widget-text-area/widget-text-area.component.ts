@@ -11,7 +11,6 @@ export class WidgetTextAreaComponent extends BaseTextWidget implements OnInit {
   widgetData: TextWidgetData = {
     name: "文本",
     setting: {
-      type: "",
       attribute: { ...this.attribute, rows: 4 },
       style: {
         layout: {

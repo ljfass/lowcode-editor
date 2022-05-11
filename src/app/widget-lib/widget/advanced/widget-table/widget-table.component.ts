@@ -18,9 +18,6 @@ export class WidgetTableComponent
 {
   widgetData = {
     attribute: {},
-    setting: {
-      type: "",
-    },
   };
   listOfData: Person[] = [
     {

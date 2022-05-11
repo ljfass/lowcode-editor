@@ -9,9 +9,25 @@ import {
   DeleteOutline,
   DeleteFill,
   DragOutline,
+  FormOutline,
+  RightOutline,
+  LeftOutline,
+  DownOutline,
+  UpOutline,
 } from "@ant-design/icons-angular/icons";
 import { IconDefinition } from "@ant-design/icons-angular";
-const icons: IconDefinition[] = [DeleteOutline, DragOutline, DeleteFill];
+
+const icons: IconDefinition[] = [
+  DeleteOutline,
+  DragOutline,
+  FormOutline,
+  DeleteFill,
+  RightOutline,
+  DownOutline,
+  UpOutline,
+  RightOutline,
+  LeftOutline,
+];
 @NgModule({
   declarations: [AppComponent],
   imports: [

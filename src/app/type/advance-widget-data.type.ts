@@ -7,7 +7,4 @@
  */
 export type AdvancedWidgetData<T> = {
   attribute: T;
-  setting: {
-    type: string;
-  };
 };

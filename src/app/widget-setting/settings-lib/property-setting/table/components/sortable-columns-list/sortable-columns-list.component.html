@@ -1,0 +1,29 @@
+<div class="sortable-columnlist-wrap">
+  <div
+    *ngIf="columnList.length"
+    cdkDropList
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    <div
+      cdkDrag
+      *ngFor="let item of columnList; let i = index"
+      class="drag-item"
+    >
+      <div *cdkDragPlaceholder>
+        <app-sortable-columns-list-item
+          [data]="item"
+        ></app-sortable-columns-list-item>
+      </div>
+      <div class="sortable-list-item">
+        <app-sortable-columns-list-item
+          [data]="item"
+          (onEdit)="onListItemEdit($event)"
+        ></app-sortable-columns-list-item>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #drawerTemplate let-data let-drawerRef="drawerRef">
+  <div appClickOutside (clickOutside)="clickOutside($event)"></div>
+  value: {{ data?.value?.name }}
+</ng-template>

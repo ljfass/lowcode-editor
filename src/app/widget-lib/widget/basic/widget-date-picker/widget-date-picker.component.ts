@@ -18,7 +18,6 @@ export class WidgetDatePickerComponent
   widgetData: DatePickerWidgetData = {
     name: "日期选择框",
     setting: {
-      type: "",
       attribute: {
         placeholder: "请选择日期",
         default: Date.parse(new Date().toString()),

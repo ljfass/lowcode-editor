@@ -94,7 +94,7 @@ export class WidgetComponent
     if (this.widget.type === "text-area")
       component.instance.widgetData.setting.attribute.inputType =
         InputType.Multiple;
-    component.instance.widgetData.setting.type = this.widget.type;
+    // component.instance.widgetData.setting.type = this.widget.type;
     // if (this.widgetData) {
     //   component.instance.widgetData = this.widgetData;
     // } else {

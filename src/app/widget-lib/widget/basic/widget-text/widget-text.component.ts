@@ -27,7 +27,6 @@ export class WidgetTextComponent
   widgetData: TextWidgetData = {
     name: "文本",
     setting: {
-      type: "",
       attribute: this.attribute,
       style: {
         layout: {

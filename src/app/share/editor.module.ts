@@ -14,6 +14,7 @@ import { WidgetTextComponent } from "../widget-lib/widget/basic/widget-text/widg
 import { WidgetDatePickerComponent } from "../widget-lib/widget/basic/widget-date-picker/widget-date-picker.component";
 import { WidgetTextAreaComponent } from "../widget-lib/widget/basic/widget-text-area/widget-text-area.component";
 import { WidgetTableComponent } from "../widget-lib/widget/advanced/widget-table/widget-table.component";
+import { ClickOutsideDirective } from "../directives/click-outside/click-outside.directive";
 
 const basic = [
   WidgetTextAreaComponent,
