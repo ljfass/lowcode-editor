@@ -1,8 +1,9 @@
-<app-widget-setting-collapse-pane
-  [panel]="dataColumnsObject.panel"
-  (onActiveChange)="test($event)"
->
+<app-widget-setting-collapse-pane [panel]="pane">
   <app-sortable-columns-list
-    [columnList]="dataColumnsObject.columns"
+    [ref]="ref"
+    [columnList]="columns"
+    (onItemEdit)="onTableColumnEdit($event)"
+    (onItemDelete)="onTableColumnDelete($event)"
+    (onItemAdd)="onTableColumnAdd()"
   ></app-sortable-columns-list>
 </app-widget-setting-collapse-pane>

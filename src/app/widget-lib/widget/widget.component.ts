@@ -19,10 +19,12 @@ import {
   Injector,
 } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { WidgetCard } from "src/app/type";
+import { WidgetCard, WidgetData } from "src/app/type";
 import { InputType, WidgetStatus } from "../../enum";
+import { AdvancedBaseWidgetContent } from "./advanced/base-wdiget-content";
 import { BasicBaseWidgetContent } from "./basic/base-widget-content";
 import { WidgetService } from "./widget.service";
+
 @Component({
   selector: "app-widget",
   templateUrl: "./widget.component.html",
@@ -42,7 +44,9 @@ export class WidgetComponent
   /** 当前组件状态 */
   status = WidgetStatus.None;
   componentRef?: ComponentRef<WidgetComponent>;
-  contentComponentRef?: ComponentRef<BasicBaseWidgetContent>;
+  contentComponentRef?: ComponentRef<
+    BasicBaseWidgetContent | AdvancedBaseWidgetContent
+  >;
   // widgetData!: WidgetData<any>;
   widgetStyle: { [key: string]: any } = {
     width: 0,
@@ -84,16 +88,21 @@ export class WidgetComponent
   }
 
   // 创建具体的组件
-  createContentComponent(): ComponentRef<BasicBaseWidgetContent> {
+  createContentComponent(): ComponentRef<
+    BasicBaseWidgetContent | AdvancedBaseWidgetContent
+  > {
     this.container.clear();
-    const factory: ComponentFactory<BasicBaseWidgetContent> =
-      this.resolver.resolveComponentFactory(this.widget.component);
+    const factory: ComponentFactory<
+      BasicBaseWidgetContent | AdvancedBaseWidgetContent
+    > = this.resolver.resolveComponentFactory(this.widget.component);
 
-    const component: ComponentRef<BasicBaseWidgetContent> =
-      this.container.createComponent(factory);
+    const component: ComponentRef<
+      BasicBaseWidgetContent | AdvancedBaseWidgetContent
+    > = this.container.createComponent(factory);
     if (this.widget.type === "text-area")
-      component.instance.widgetData.setting.attribute.inputType =
-        InputType.Multiple;
+      (
+        component.instance.widgetData as WidgetData<any>
+      ).setting.attribute.inputType = InputType.Multiple;
     // component.instance.widgetData.setting.type = this.widget.type;
     // if (this.widgetData) {
     //   component.instance.widgetData = this.widgetData;

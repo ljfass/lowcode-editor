@@ -15,13 +15,13 @@ export class ClickOutsideDirective {
 
   @HostListener("document:click", ["$event", "$event.target"])
   onClick(e: MouseEvent, targetElement: HTMLElement) {
-    console.log(targetElement);
-
     if (!targetElement) {
       return;
     }
-    const clickedInside = targetElement.contains(this.elementRef.nativeElement);
-    console.log(clickedInside);
+
+    const clickedInside =
+      this.elementRef.nativeElement.contains(targetElement) ||
+      targetElement.classList.contains("ant-select-item-option-content");
 
     this.clickOutside.emit(clickedInside);
   }

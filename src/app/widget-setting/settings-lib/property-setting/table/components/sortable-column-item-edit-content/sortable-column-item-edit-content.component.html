@@ -1,0 +1,31 @@
+<div
+  appClickOutside
+  (clickOutside)="clickOutside($event)"
+  style="width: 100%; height: 100%; padding: 15px 10px"
+>
+  <form nz-form>
+    <nz-form-item>
+      <nz-form-label [nzSm]="7" [nzXs]="24">标题</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input [(ngModel)]="value.title" name="title" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="7" [nzXs]="24">数据字段</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input [(ngModel)]="value.name" name="name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="7" [nzXs]="24">数据类型</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select
+          [(ngModel)]="value.type"
+          name="type"
+          [nzOptions]="tableColumnTypList"
+        >
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

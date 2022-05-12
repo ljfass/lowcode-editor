@@ -14,6 +14,7 @@ import { NzCollapseModule } from "ng-zorro-antd/collapse";
 import { NzSliderModule } from "ng-zorro-antd/slider";
 import { NzTableModule } from "ng-zorro-antd/table";
 import { NzDrawerModule } from "ng-zorro-antd/drawer";
+import { NzFormModule } from "ng-zorro-antd/form";
 import { NZ_I18N } from "ng-zorro-antd/i18n";
 import { zh_CN } from "ng-zorro-antd/i18n";
 import { NzIconModule } from "ng-zorro-antd/icon";
@@ -44,6 +45,7 @@ registerLocaleData(zh);
     NzElementPatchModule,
     NzIconModule,
     NzDrawerModule,
+    NzFormModule,
   ],
 })
 export class NgZorroAntdModule {}

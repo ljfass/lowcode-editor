@@ -1,6 +1,7 @@
 import { Component, ComponentRef } from "@angular/core";
 import { NzButtonShape } from "ng-zorro-antd/button";
 import { ButtonType } from "src/app/enum";
+import { WidgetData } from "src/app/type";
 import { WidgetButtonComponent } from "src/app/widget-lib/widget/basic/widget-button/widget-button.component";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 
@@ -13,45 +14,40 @@ export class ButtonComponent {
   constructor(public ref: ComponentRef<WidgetComponent>) {}
 
   get attribute() {
-    return this.ref.instance.contentComponentRef!.instance.widgetData.setting
-      .attribute;
+    return (
+      this.ref.instance.contentComponentRef!.instance
+        .widgetData as WidgetData<any>
+    ).setting.attribute;
   }
 
   onInputChange(val: string) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.buttonText =
-      val;
+    this.attribute.buttonText = val;
   }
 
   onSizeChange(size: string) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.size =
-      size;
+    this.attribute.size = size;
     (
       this.ref.instance.contentComponentRef?.instance as WidgetButtonComponent
     ).refreshButtonWidgetWidth(size);
   }
 
   onTypeChange(type: ButtonType) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.type =
-      type;
+    this.attribute.type = type;
   }
 
   onShapeChange(shape: NzButtonShape) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.shape =
-      shape;
+    this.attribute.shape = shape;
   }
 
   onGhostChange(val: boolean) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.ghost =
-      val;
+    this.attribute.ghost = val;
   }
 
   onDisableChange(val: boolean) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.disabled =
-      val;
+    this.attribute.disabled = val;
   }
 
   onLoadingChange(val: boolean) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.loading =
-      val;
+    this.attribute.loading = val;
   }
 }

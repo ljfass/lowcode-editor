@@ -17,13 +17,15 @@
       <div class="sortable-list-item">
         <app-sortable-columns-list-item
           [data]="item"
-          (onEdit)="onListItemEdit($event)"
+          (onEdit)="onListItemEdit($event, i)"
+          (onDelete)="onListItemDelete(i)"
         ></app-sortable-columns-list-item>
       </div>
     </div>
   </div>
+  <div>
+    <button nz-button nzType="primary" (click)="onItemAdd.emit()">
+      添加一项
+    </button>
+  </div>
 </div>
-<ng-template #drawerTemplate let-data let-drawerRef="drawerRef">
-  <div appClickOutside (clickOutside)="clickOutside($event)"></div>
-  value: {{ data?.value?.name }}
-</ng-template>

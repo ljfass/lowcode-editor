@@ -22,52 +22,37 @@ export class TextComponent {
   }
 
   get style() {
-    return this.ref.instance.contentComponentRef!.instance.widgetData.setting
-      .style;
+    return (
+      this.ref.instance.contentComponentRef!.instance
+        .widgetData as WidgetData<any>
+    ).setting.style;
   }
 
   constructor(public ref: ComponentRef<WidgetComponent>) {
     if (ref) {
-      this.fontWeight =
-        ref.instance.contentComponentRef!.instance.widgetData.setting.style
-          .background.opacity * 100;
+      this.fontWeight = this.style.background.opacity * 100;
     }
   }
   fontSizeOptions = buttonWiddgetFontSzieOptions;
 
   onWidgetFontSizeChange(val: number) {
-    (
-      this.ref.instance.contentComponentRef!.instance
-        .widgetData as WidgetData<any>
-    ).setting.style.text.fontSize = val;
+    this.style.text.fontSize = val;
   }
 
   onWidgetFontWeightChange(val: number) {
-    (
-      this.ref.instance.contentComponentRef!.instance
-        .widgetData as WidgetData<any>
-    ).setting.style.text.fontWeight = val;
+    this.style.text.fontWeight = val;
   }
 
   onWidgetLineHeightChange(val: number) {
-    (
-      this.ref.instance.contentComponentRef!.instance
-        .widgetData as WidgetData<any>
-    ).setting.style.text.lineHeight = val;
+    this.style.text.lineHeight = val;
   }
 
   onWidgetBgOpacityChange(val: number) {
-    (
-      this.ref.instance.contentComponentRef!.instance
-        .widgetData as WidgetData<any>
-    ).setting.style.background.opacity = val / 100;
+    this.style.background.opacity = val / 100;
   }
 
   onColorPickerChange(color: string) {
-    (
-      this.ref.instance.contentComponentRef!.instance
-        .widgetData as WidgetData<any>
-    ).setting.style.text.color = color;
+    this.style.text.color = color;
   }
 
   formatterPixel = nzInputNumberFormatter("px");

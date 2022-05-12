@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { AdvancedWidgetData } from "src/app/type/advance-widget-data.type";
+import { TableAttribute } from "src/app/type/attribute/table";
+import { SortableListItemType } from "src/app/widget-setting/settings-lib/property-setting/table/enum";
 import { AdvancedBaseWidgetContent } from "../base-wdiget-content";
+export type TableWidgetData = AdvancedWidgetData<TableAttribute>;
 interface Person {
   key: string;
   name: string;
@@ -16,30 +20,35 @@ export class WidgetTableComponent
   extends AdvancedBaseWidgetContent
   implements OnInit
 {
-  widgetData = {
-    attribute: {},
-  };
-  listOfData: Person[] = [
-    {
-      key: "1",
-      name: "John Brown",
-      age: 32,
-      address: "New York No. 1 Lake Park",
-    },
-    {
-      key: "2",
-      name: "Jim Green",
-      age: 42,
-      address: "London No. 1 Lake Park",
-    },
-    {
-      key: "3",
-      name: "Joe Black",
-      age: 32,
-      address: "Sidney No. 1 Lake Park",
-    },
-  ];
+  widgetData: TableWidgetData = {
+    attribute: {
+      columns: [
+        {
+          name: "name",
+          title: "姓名",
+          type: SortableListItemType.Input,
+        },
 
+        {
+          name: "date",
+          title: "入职日期",
+          type: SortableListItemType.Date,
+        },
+        {
+          name: "price",
+          title: "月薪",
+          type: SortableListItemType.Number,
+        },
+      ],
+      datas: [
+        {
+          name: "小王",
+          date: 1652344873000,
+          price: 5000,
+        },
+      ],
+    },
+  };
   constructor() {
     super();
   }

@@ -4,10 +4,20 @@
   </div>
   <div class="input">
     <div class="input-wrap">
-      <input nz-input placeholder="请输入" [ngModel]="title" />
+      <input
+        nz-input
+        nzSize="small"
+        placeholder="请输入"
+        [(ngModel)]="data.title"
+      />
     </div>
     <div class="input-wrap">
-      <input nz-input placeholder="请输入" [ngModel]="name" />
+      <input
+        nz-input
+        nzSize="small"
+        placeholder="请输入"
+        [(ngModel)]="data.name"
+      />
     </div>
   </div>
 
@@ -21,7 +31,7 @@
         nzTheme="outline"
       ></i>
     </div>
-    <div class="action-wrap">
+    <div class="action-wrap" (click)="onDelete.emit()">
       <i
         nz-tooltip
         nzTooltipTitle="删除"

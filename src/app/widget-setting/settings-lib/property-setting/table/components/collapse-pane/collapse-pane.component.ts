@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   Output,
-  OnInit,
   EventEmitter,
   OnChanges,
   SimpleChanges,
@@ -15,14 +14,12 @@ import { CollapsePaneExpandeType } from "../../type";
   templateUrl: "./collapse-pane.component.html",
   styleUrls: ["./collapse-pane.component.less"],
 })
-export class CollapsePaneComponent implements OnInit, OnChanges {
+export class CollapsePaneComponent implements OnChanges {
   @Input()
   @Input()
   panel!: CollapsePaneExpandeType;
   @Output() onActiveChange = new EventEmitter<boolean>();
   @Output() onJump = new EventEmitter<null>();
-
-  constructor() {}
 
   _panel!: CollapsePaneExpandeType;
 
@@ -33,8 +30,6 @@ export class CollapsePaneComponent implements OnInit, OnChanges {
   get panelActive(): boolean {
     return this._panel.active!;
   }
-
-  ngOnInit(): void {}
 
   /**
    *

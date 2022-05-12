@@ -1,17 +1,20 @@
-<nz-table #basicTable [nzData]="listOfData">
+<nz-table [nzData]="widgetData.attribute.datas">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Address</th>
-      <th>Action</th>
+      <th *ngFor="let header of widgetData.attribute.columns">
+        {{ header.title }}
+      </th>
+      <th>操作</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of basicTable.data">
-      <td>{{ data.name }}</td>
-      <td>{{ data.age }}</td>
-      <td>{{ data.address }}</td>
+    <tr *ngFor="let data of widgetData.attribute.datas">
+      <td *ngFor="let header of widgetData.attribute.columns">
+        {{ data[header.name] }}
+      </td>
+      <!-- <td>{{ data.name }}</td>
+      <td>{{ data.date }}</td>
+      <td>{{ data.price }}</td> -->
       <td>
         <a>Action 一 {{ data.name }}</a>
         <a>Delete</a>

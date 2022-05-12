@@ -65,7 +65,7 @@ export class WidgetButtonComponent
   }
 
   ngAfterViewInit(): void {
-    this.widgetData.setting.style.layout.width =
+    this.widgetData.setting.style!.layout.width =
       this.button?.["elementRef"].nativeElement.offsetWidth;
   }
 
@@ -83,14 +83,14 @@ export class WidgetButtonComponent
     this.widgetData.setting.attribute.buttonText = value;
     this.readonly = true;
     setTimeout(() => {
-      this.widgetData.setting.style.layout.width =
+      this.widgetData.setting.style!.layout.width =
         this.button?.["elementRef"].nativeElement.offsetWidth;
     });
   }
 
   // 改变按钮尺寸后重新获取宽度
   refreshButtonWidgetWidth(size: string) {
-    this.widgetData.setting.style.layout.width =
+    this.widgetData.setting.style!.layout.width =
       size === "large" ? 64 : size === "default" ? 60 : 44;
   }
 }

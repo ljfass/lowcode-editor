@@ -1,11 +1,4 @@
-import {
-  Component,
-  Input,
-  EventEmitter,
-  OnInit,
-  Output,
-  ElementRef,
-} from "@angular/core";
+import { Component, Input, EventEmitter, OnInit, Output } from "@angular/core";
 import { CollapseColumnListType } from "../../type";
 
 @Component({
@@ -15,7 +8,6 @@ import { CollapseColumnListType } from "../../type";
 })
 export class ColumnSettingItemComponent implements OnInit {
   @Input() data!: CollapseColumnListType;
-
   @Output() public onEdit = new EventEmitter<MouseEvent>();
   @Output() public onDelete = new EventEmitter<string | number>();
 

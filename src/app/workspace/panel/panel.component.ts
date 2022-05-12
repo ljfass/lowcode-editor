@@ -64,7 +64,6 @@ export class PanelComponent implements OnInit, AfterViewInit {
           .subscribe(({ type, style, widgetData }) => {});
         comp.instance.setSelected();
         this.widgets.push(comp);
-        console.log(this.widgets);
       }
     }
   }
@@ -99,8 +98,6 @@ export class PanelComponent implements OnInit, AfterViewInit {
           this.selectedWidgets.splice(0, this.selectedWidgets.length, comp);
         }
       });
-    console.log(this.compAreaContainer);
-
     return comp;
   }
 

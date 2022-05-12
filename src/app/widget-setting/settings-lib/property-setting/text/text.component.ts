@@ -1,5 +1,6 @@
 import { Component, ComponentRef } from "@angular/core";
 import { textWiddgetFontSzieOptions } from "src/app/const";
+import { WidgetData } from "src/app/type";
 import { WidgetTextComponent } from "src/app/widget-lib/widget/basic/widget-text/widget-text.component";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 
@@ -13,12 +14,13 @@ export class TextComponent {
   fontOptions = textWiddgetFontSzieOptions;
 
   get attribute() {
-    return this.ref.instance.contentComponentRef?.instance.widgetData.setting
-      .attribute;
+    return (
+      this.ref.instance.contentComponentRef!.instance
+        .widgetData as WidgetData<any>
+    ).setting.attribute;
   }
   onFontSelectChange(font: string) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.size =
-      font;
+    this.attribute.size = font;
   }
 
   onShowMarkChange(val: boolean) {
@@ -43,46 +45,40 @@ export class TextComponent {
 
   // 文本内容
   onTextAreaChange(value: string) {
-    const shouldTrim =
-      this.ref.instance.contentComponentRef?.instance.widgetData.setting
-        .attribute.trim;
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.text =
-      !shouldTrim ? value : value.trim();
+    const shouldTrim = (
+      this.ref.instance.contentComponentRef!.instance
+        .widgetData as WidgetData<any>
+    ).setting.attribute.trim;
+    this.attribute.text = !shouldTrim ? value : value.trim();
   }
 
   // 占位提示
   onPlaceholderChange(val: string) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.placeholder =
-      val;
+    this.attribute.placeholder = val;
   }
 
   // 尺寸
   onSizeChange(size: string) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.size =
-      size;
+    this.attribute.size = size;
   }
 
   // 禁用
   onDisableChange(val: boolean) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.disabled =
-      val;
+    this.attribute.disabled = val;
   }
 
   // 多行文本高度
   onTextRowsChange(val: number) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.rows =
-      val;
+    this.attribute.rows = val;
   }
 
   // 自动去除头尾空字符
   onTextTrimChange(val: boolean) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.trim =
-      val;
+    this.attribute.trim = val;
   }
 
   // 文本框类型
   onInputTypeChange(val: string) {
-    this.ref.instance.contentComponentRef!.instance.widgetData.setting.attribute.inputType =
-      val;
+    this.attribute.inputType = val;
   }
 }

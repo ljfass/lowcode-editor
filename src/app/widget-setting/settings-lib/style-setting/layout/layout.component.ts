@@ -12,21 +12,17 @@ export class LayoutComponent {
   constructor(public ref: ComponentRef<WidgetComponent>) {}
 
   get style() {
-    return this.ref.instance.contentComponentRef!.instance.widgetData.setting
-      .style;
+    return (
+      this.ref.instance.contentComponentRef!.instance
+        .widgetData as WidgetData<any>
+    ).setting.style;
   }
 
   onWidgetHeight(val: number) {
-    (
-      this.ref.instance.contentComponentRef!.instance
-        .widgetData as WidgetData<any>
-    ).setting.style.layout.height = val;
+    this.style.layout.height = val;
   }
   onWidgetWidth(val: number) {
-    (
-      this.ref.instance.contentComponentRef!.instance
-        .widgetData as WidgetData<any>
-    ).setting.style.layout.width = val;
+    this.style.layout.width = val;
   }
 
   formatterPixel = nzInputNumberFormatter("px");
