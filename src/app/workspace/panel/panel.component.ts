@@ -78,7 +78,6 @@ export class PanelComponent implements OnInit, AfterViewInit {
           0,
           comp
         );
-        console.log(this.widgets);
       }
     }
   }
@@ -126,8 +125,13 @@ export class PanelComponent implements OnInit, AfterViewInit {
       this.selectedWidgets.forEach((item, i: number) => {
         if (item === comp) {
           const newComp = this.createWidget(comp.instance.widget);
-          newComp.instance.widgetData =
-            comp.instance.contentComponentRef?.instance.widgetData;
+
+          // 浅拷贝
+          newComp.instance.widgetData = JSON.parse(
+            JSON.stringify(
+              comp.instance.contentComponentRef?.instance.widgetData
+            )
+          );
 
           newComp.instance.setSelected();
           this.widgets.push(newComp);
