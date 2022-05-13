@@ -41,6 +41,9 @@ export class ColumnEditService {
         value: data,
       },
     });
+    this.drawerRef.afterClose.subscribe(() => {
+      this.drawerRef = null;
+    });
   }
 
   // 关闭编辑抽屉
