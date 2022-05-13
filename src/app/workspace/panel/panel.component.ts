@@ -137,13 +137,16 @@ export class PanelComponent implements OnInit, AfterViewInit {
     comp.instance.detectDropWidget
       .pipe(takeWhile(() => this.alive))
       .subscribe(({ event, comp, pos }) => {
-        for (let i = 0; i < this.widgets.length; i++) {
-          if (this.widgets[i] === comp) {
-            this.onCompAreaDrop(event, pos, i);
-            break;
+        let shouldSkip = false;
+        this.widgets.forEach((item, i) => {
+          if (shouldSkip) {
+            return;
           }
-        }
-        this.widgets.forEach((item, i: number) => {});
+          if (item === comp) {
+            this.onCompAreaDrop(event, pos, i);
+            shouldSkip = true;
+          }
+        });
       });
     return comp;
   }
