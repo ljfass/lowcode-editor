@@ -1,5 +1,5 @@
 <div class="widget-right-corner-actions">
-  <div class="widget-right-corner-action">
+  <div class="widget-right-corner-action" (click)="onWidgetCopy.emit()">
     <i
       nz-icon
       nzType="copy"
@@ -9,7 +9,7 @@
       nzTheme="outline"
     ></i>
   </div>
-  <div class="widget-right-corner-action">
+  <div class="widget-right-corner-action" (click)="onWidgetDelete.emit()">
     <i
       nz-icon
       nzType="delete"

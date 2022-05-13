@@ -15,6 +15,7 @@ import { WidgetDatePickerComponent } from "../widget-lib/widget/basic/widget-dat
 import { WidgetTextAreaComponent } from "../widget-lib/widget/basic/widget-text-area/widget-text-area.component";
 import { WidgetTableComponent } from "../widget-lib/widget/advanced/widget-table/widget-table.component";
 import { ClickOutsideDirective } from "../directives/click-outside/click-outside.directive";
+import { DraggableDetectAreaDirective } from "../directives/draggable-detect-area/draggable-detect-area.directive";
 
 const basic = [
   WidgetTextAreaComponent,
@@ -34,7 +35,11 @@ const components = [
   WidgetRightCornerActionComponent,
 ];
 
-const directives = [ContenteditableDirective, MousemoveoutDirective];
+const directives = [
+  ContenteditableDirective,
+  MousemoveoutDirective,
+  DraggableDetectAreaDirective,
+];
 
 @NgModule({
   declarations: [...components, ...directives],

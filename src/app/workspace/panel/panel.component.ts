@@ -14,6 +14,7 @@ import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 import { WidgetLibComponent } from "../../widget-lib/widget-lib.component";
 import { WidgetLibService } from "../../widget-lib/widget-lib.service";
 import { takeWhile } from "rxjs/operators";
+import { AdvancedWidgetData } from "src/app/type/advance-widget-data.type";
 
 @Component({
   selector: "app-panel",
@@ -50,34 +51,60 @@ export class PanelComponent implements OnInit, AfterViewInit {
     componentRef.changeDetectorRef.detectChanges();
   }
 
-  onCompAreaDrop(event: DragEvent) {
+  onCompAreaDrop(event: DragEvent, pos?: string, index?: number) {
     event.preventDefault();
     const widgetType = event.dataTransfer?.getData("widgetType");
+    let injectIndex = undefined;
+    if (index !== undefined) {
+      injectIndex = index;
+      if (pos === "bottom") {
+        injectIndex = index! + 1;
+      } else {
+        injectIndex = index;
+      }
+    }
     if (widgetType) {
       const widget = this.widgetLibSrv.getWidgetByType(widgetType);
       if (widget) {
-        const index = this.widgets.length + 1;
+        // const index = this.widgets.length + 1;
         // comp -> WidgetComponent
-        const comp = this.createWidget(widget);
-        comp.instance.initialized
-          .pipe(takeWhile(() => this.alive))
-          .subscribe(({ type, style, widgetData }) => {});
+        const comp = this.createWidget(widget, injectIndex, pos);
+        // comp.instance.initialized
+        //   .pipe(takeWhile(() => this.alive))
+        //   .subscribe(({ type, style, widgetData }) => {});
         comp.instance.setSelected();
-        this.widgets.push(comp);
+        this.widgets.splice(
+          injectIndex === undefined ? this.widgets.length : injectIndex,
+          0,
+          comp
+        );
+        console.log(this.widgets);
       }
     }
   }
 
   createWidget(
     widget: WidgetCard,
-    widgetData?: WidgetData<any>
+    index?: number,
+    pos?: string,
+    widgetData?: WidgetData<any> | AdvancedWidgetData<any>
   ): ComponentRef<WidgetComponent> {
     const factory: ComponentFactory<WidgetComponent> =
       this.cfr.resolveComponentFactory(WidgetComponent);
+    // let injectIndex = undefined;
+    // if (index !== undefined) {
+    //   injectIndex = index;
+    //   if (pos === "bottom") {
+    //     injectIndex = index! + 1;
+    //   } else {
+    //     injectIndex = index === 0 ? 0 : index! - 1;
+    //   }
+    // }
     const comp: ComponentRef<WidgetComponent> =
-      this.compAreaContainer.createComponent(factory);
+      this.compAreaContainer.createComponent(factory, index);
     // if (widgetData) {
-    //   comp.instance.widgetData = widgetData;
+    //   console.log(widgetData);
+    //   comp.instance.contentComponentRef!.instance!.widgetData = widgetData;
     // }
     comp.instance.componentRef = comp;
     comp.instance.widget = widget;
@@ -97,6 +124,39 @@ export class PanelComponent implements OnInit, AfterViewInit {
           // 选中当前组件
           this.selectedWidgets.splice(0, this.selectedWidgets.length, comp);
         }
+      });
+    comp.instance.deleteWidget
+      .pipe(takeWhile(() => this.alive))
+      .subscribe(() => {
+        this.selectedWidgets.forEach((item, i: number) => {
+          if (item === comp) {
+            comp.destroy();
+            this.selectedWidgets.splice(i, 1);
+          }
+        });
+      });
+    comp.instance.copyWidget.pipe(takeWhile(() => this.alive)).subscribe(() => {
+      this.selectedWidgets.forEach((item, i: number) => {
+        if (item === comp) {
+          const newComp = this.createWidget(comp.instance.widget);
+          newComp.instance.widgetData =
+            comp.instance.contentComponentRef?.instance.widgetData;
+
+          newComp.instance.setSelected();
+          this.widgets.push(newComp);
+        }
+      });
+    });
+    comp.instance.detectWidget
+      .pipe(takeWhile(() => this.alive))
+      .subscribe(({ event, comp, pos }) => {
+        for (let i = 0; i < this.widgets.length; i++) {
+          if (this.widgets[i] === comp) {
+            this.onCompAreaDrop(event, pos, i);
+            break;
+          }
+        }
+        this.widgets.forEach((item, i: number) => {});
       });
     return comp;
   }

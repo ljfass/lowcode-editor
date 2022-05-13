@@ -1,4 +1,14 @@
 <div
+  class="bottom-drag-detect-area"
+  appDraggableDetectArea
+  [clssName]="'active'"
+  (onDragDrop)="onWidgetDrop($event, 'top')"
+>
+  <div class="inner">
+    <span>放在这里</span>
+  </div>
+</div>
+<div
   appMouseMoveOut
   #widgetWrapper
   class="widget-wrapper"
@@ -13,6 +23,8 @@
     <div class="widget-actions">
       <app-widget-right-corner-action
         [name]="widget.name"
+        (onWidgetCopy)="copyWidget.emit()"
+        (onWidgetDelete)="deleteWidget.emit()"
       ></app-widget-right-corner-action>
     </div>
     <ng-template></ng-template>
@@ -25,4 +37,14 @@
   [ngStyle]="(profileTemporary$ | async).styleContent"
 >
   <div class="inner"></div>
+</div>
+<div
+  class="bottom-drag-detect-area"
+  appDraggableDetectArea
+  [clssName]="'active'"
+  (onDragDrop)="onWidgetDrop($event, 'bottom')"
+>
+  <div class="inner">
+    <span>放在这里</span>
+  </div>
 </div>

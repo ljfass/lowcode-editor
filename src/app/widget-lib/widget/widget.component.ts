@@ -20,6 +20,7 @@ import {
 } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { WidgetCard, WidgetData } from "src/app/type";
+import { AdvancedWidgetData } from "src/app/type/advance-widget-data.type";
 import { InputType, WidgetStatus } from "../../enum";
 import { AdvancedBaseWidgetContent } from "./advanced/base-wdiget-content";
 import { BasicBaseWidgetContent } from "./basic/base-widget-content";
@@ -40,6 +41,13 @@ export class WidgetComponent
   @Input() widgets!: ComponentRef<WidgetComponent>[];
   @Output() initialized = new EventEmitter<any>();
   @Output() selectWidget = new EventEmitter<any>();
+  @Output() deleteWidget = new EventEmitter<any>();
+  @Output() copyWidget = new EventEmitter<any>();
+  @Output() detectWidget = new EventEmitter<{
+    event: DragEvent;
+    comp: ComponentRef<WidgetComponent>;
+    pos: string;
+  }>();
 
   /** 当前组件状态 */
   status = WidgetStatus.None;
@@ -47,13 +55,8 @@ export class WidgetComponent
   contentComponentRef?: ComponentRef<
     BasicBaseWidgetContent | AdvancedBaseWidgetContent
   >;
-  // widgetData!: WidgetData<any>;
-  widgetStyle: { [key: string]: any } = {
-    width: 0,
-    height: 0,
-    left: 0,
-    top: 0,
-  };
+  widgetData?: WidgetData<any> | AdvancedWidgetData<any>;
+
   @ViewChild("widgetWrapper") widgetEle!: ElementRef;
   profileTemporary$: BehaviorSubject<any> = new BehaviorSubject(null);
 
@@ -103,12 +106,9 @@ export class WidgetComponent
       (
         component.instance.widgetData as WidgetData<any>
       ).setting.attribute.inputType = InputType.Multiple;
-    // component.instance.widgetData.setting.type = this.widget.type;
-    // if (this.widgetData) {
-    //   component.instance.widgetData = this.widgetData;
-    // } else {
-    //   this.widgetData = component.instance.widgetData;
-    // }
+    if (this.widgetData) {
+      component.instance.widgetData = this.widgetData;
+    }
     return component;
   }
 
@@ -151,5 +151,10 @@ export class WidgetComponent
     } else {
       this.profileTemporary$.next(null);
     }
+  }
+
+  // 删除组件
+  onWidgetDrop(e: DragEvent, pos: string) {
+    this.detectWidget.emit({ event: e, comp: this.componentRef!, pos });
   }
 }
