@@ -91,21 +91,8 @@ export class PanelComponent implements OnInit, AfterViewInit {
   ): ComponentRef<WidgetComponent> {
     const factory: ComponentFactory<WidgetComponent> =
       this.cfr.resolveComponentFactory(WidgetComponent);
-    // let injectIndex = undefined;
-    // if (index !== undefined) {
-    //   injectIndex = index;
-    //   if (pos === "bottom") {
-    //     injectIndex = index! + 1;
-    //   } else {
-    //     injectIndex = index === 0 ? 0 : index! - 1;
-    //   }
-    // }
     const comp: ComponentRef<WidgetComponent> =
       this.compAreaContainer.createComponent(factory, index);
-    // if (widgetData) {
-    //   console.log(widgetData);
-    //   comp.instance.contentComponentRef!.instance!.widgetData = widgetData;
-    // }
     comp.instance.componentRef = comp;
     comp.instance.widget = widget;
     comp.instance.widgets = this.widgets;
@@ -147,7 +134,7 @@ export class PanelComponent implements OnInit, AfterViewInit {
         }
       });
     });
-    comp.instance.detectWidget
+    comp.instance.detectDropWidget
       .pipe(takeWhile(() => this.alive))
       .subscribe(({ event, comp, pos }) => {
         for (let i = 0; i < this.widgets.length; i++) {

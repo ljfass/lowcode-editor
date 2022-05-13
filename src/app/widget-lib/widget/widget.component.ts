@@ -43,7 +43,7 @@ export class WidgetComponent
   @Output() selectWidget = new EventEmitter<any>();
   @Output() deleteWidget = new EventEmitter<any>();
   @Output() copyWidget = new EventEmitter<any>();
-  @Output() detectWidget = new EventEmitter<{
+  @Output() detectDropWidget = new EventEmitter<{
     event: DragEvent;
     comp: ComponentRef<WidgetComponent>;
     pos: string;
@@ -153,8 +153,11 @@ export class WidgetComponent
     }
   }
 
-  // 删除组件
+  /**
+   * 组件上下位置的拖拽监听
+   * pos: ’top‘ | 'bottom'
+   */
   onWidgetDrop(e: DragEvent, pos: string) {
-    this.detectWidget.emit({ event: e, comp: this.componentRef!, pos });
+    this.detectDropWidget.emit({ event: e, comp: this.componentRef!, pos });
   }
 }

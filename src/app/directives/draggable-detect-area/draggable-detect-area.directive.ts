@@ -5,11 +5,7 @@ import {
   ElementRef,
   Input,
 } from "@angular/core";
-export type DragTypea = {
-  Enter: "enter";
-  Leave: "leave";
-  Over: "over";
-};
+import { DragEventType } from "src/app/enum";
 
 @Directive({
   selector: "[appDraggableDetectArea]",
@@ -25,12 +21,9 @@ export class DraggableDetectAreaDirective {
   @Output() onDragDrop = new EventEmitter<DragEvent>();
   constructor(private elementRef: ElementRef) {}
 
-  listentDrag(e: DragEvent, type: DragTypea) {
+  listenDrag(e: DragEvent, type: DragEventType) {
     e.preventDefault();
-  }
-
-  listenDrag(e: DragEvent, type: string) {
-    if (type === "enter" || type === "over") {
+    if (type === DragEventType.Enter || type === DragEventType.Over) {
       this.elementRef.nativeElement.classList.add(this.clssName);
     } else {
       this.elementRef.nativeElement.classList.remove(this.clssName);
