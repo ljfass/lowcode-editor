@@ -1,4 +1,4 @@
-import { InputType, Position } from "src/app/enum";
+import { EventType, InputType, Position } from "src/app/enum";
 import { TextAttribute } from "src/app/type";
 import { BasicBaseWidgetContent } from "./base-widget-content";
 
@@ -33,4 +33,20 @@ export class BaseTextWidget extends BasicBaseWidgetContent {
       width: 1,
     },
   };
+  events = [
+    {
+      actionId: "1",
+      actionName: "onChange 值发生变化",
+      actionType: EventType.ValueChange,
+      defaultFuncName: "onChange",
+      funs: [],
+    },
+    {
+      actionId: "2",
+      actionName: "onFocus 获取焦点",
+      actionType: EventType.Focus,
+      defaultFuncName: "onFocus",
+      funs: [],
+    },
+  ];
 }

@@ -5,7 +5,6 @@ import {
   ViewContainerRef,
 } from "@angular/core";
 import { WidgetEvent } from "src/app/type";
-import { WidgetButtonComponent } from "src/app/widget-lib/widget/basic/widget-button/widget-button.component";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 import { EventHandlerService } from "../providers/event-handler/event-handler.service";
 
@@ -22,9 +21,7 @@ export class ButtonComponent implements OnInit {
   ) {}
 
   get data() {
-    return (
-      this.ref.instance.contentComponentRef?.instance as WidgetButtonComponent
-    ).widgetData;
+    return (this.ref.instance.contentComponentRef?.instance)!.widgetData;
   }
 
   get events(): WidgetEvent[] | undefined {

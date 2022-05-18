@@ -21,6 +21,7 @@ export class WidgetTextAreaComponent extends BaseTextWidget implements OnInit {
         ...this.apperanceStyle,
       },
     },
+    events: this.events,
   };
   widgetMode = WidgetMode;
 

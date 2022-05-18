@@ -45,7 +45,11 @@
   </footer>
 </div>
 
-<nz-modal [(nzVisible)]="showPreview" nzTitle="预览">
+<nz-modal
+  [(nzVisible)]="showPreview"
+  nzTitle="预览"
+  (nzOnCancel)="showPreview = false"
+>
   <ng-container *nzModalContent>
     <ng-template #previewContainer></ng-template>
   </ng-container>

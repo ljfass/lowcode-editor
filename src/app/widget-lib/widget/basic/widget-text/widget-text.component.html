@@ -34,6 +34,7 @@
   [disabled]="widgetAttribute.disabled!"
   [ngModel]="widgetAttribute.text"
   (ngModelChange)="onModelChange($event)"
+  (focus)="onFocus()"
 />
 <textarea
   *ngIf="widgetAttribute.inputType === 'multiple'"

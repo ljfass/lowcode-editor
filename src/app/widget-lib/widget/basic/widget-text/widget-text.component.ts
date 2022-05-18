@@ -37,15 +37,7 @@ export class WidgetTextComponent
         ...this.apperanceStyle,
       },
     },
-    events: [
-      {
-        actionId: "1",
-        actionName: "onChange 值发生变化",
-        actionType: EventType.ValueChange,
-        defaultFuncName: "onChange",
-        funs: [],
-      },
-    ],
+    events: this.events,
   };
   contentText!: string;
   markElement?: HTMLElement;
@@ -216,7 +208,10 @@ export class WidgetTextComponent
 
   onModelChange(val: string) {
     if (this.widgetData.mode === WidgetMode.Editor) return;
-    this.widgetData.events![0].funs.forEach((widgetEvent) => {
+    const newEvents = this.widgetData.events!.filter(
+      (item) => item.actionType === EventType.ValueChange
+    );
+    newEvents[0].funs.forEach((widgetEvent) => {
       const body = widgetEvent.funcBody;
       const params = widgetEvent.funcParams;
       const f = new Function(
@@ -229,6 +224,25 @@ export class WidgetTextComponent
       ` + body
       );
       f("", params, val);
+    });
+  }
+
+  onFocus() {
+    if (this.widgetData.mode === WidgetMode.Editor) return;
+    const newEvents = this.widgetData.events!.filter(
+      (item) => item.actionType === EventType.Focus
+    );
+    newEvents[0].funs.forEach((widgetEvent) => {
+      const body = widgetEvent.funcBody;
+      const params = widgetEvent.funcParams;
+      const f = new Function(
+        "funcName",
+        "params",
+        `
+      this.params = params;
+      ` + body
+      );
+      f("", params);
     });
   }
 }
