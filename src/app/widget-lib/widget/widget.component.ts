@@ -16,16 +16,14 @@ import {
   ViewContainerRef,
   EventEmitter,
   ElementRef,
-  Injector,
 } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { WidgetCard, WidgetData } from "src/app/type";
+import { ComponetInstanceType, WidgetCard, WidgetData } from "src/app/type";
 import { AdvancedWidgetData } from "src/app/type/advance-widget-data.type";
-import { InputType, WidgetStatus } from "../../enum";
+import { InputType, WidgetMode, WidgetStatus } from "../../enum";
 import { AdvancedBaseWidgetContent } from "./advanced/base-wdiget-content";
 import { BasicBaseWidgetContent } from "./basic/base-widget-content";
 import { WidgetService } from "./widget.service";
-
 @Component({
   selector: "app-widget",
   templateUrl: "./widget.component.html",
@@ -38,24 +36,24 @@ export class WidgetComponent
   container!: ViewContainerRef;
 
   @Input() widget!: WidgetCard;
-  @Input() widgets!: ComponentRef<WidgetComponent>[];
+  @Input() widgets!: ComponetInstanceType[];
   @Output() initialized = new EventEmitter<any>();
   @Output() selectWidget = new EventEmitter<any>();
   @Output() deleteWidget = new EventEmitter<any>();
   @Output() copyWidget = new EventEmitter<any>();
   @Output() detectDropWidget = new EventEmitter<{
     event: DragEvent;
-    comp: ComponentRef<WidgetComponent>;
+    comp: ComponetInstanceType;
     pos: string;
   }>();
-
+  sfd = 1;
   /** 当前组件状态 */
   status = WidgetStatus.None;
-  componentRef?: ComponentRef<WidgetComponent>;
+  componentRef?: ComponetInstanceType;
   contentComponentRef?: ComponentRef<
     BasicBaseWidgetContent | AdvancedBaseWidgetContent
   >;
-  widgetData?: WidgetData<any> | AdvancedWidgetData<any>;
+  widgetData!: WidgetData<any> | AdvancedWidgetData<any>;
 
   @ViewChild("widgetWrapper") widgetEle!: ElementRef;
   profileTemporary$: BehaviorSubject<any> = new BehaviorSubject(null);
@@ -64,7 +62,12 @@ export class WidgetComponent
     return this.widgetSrv.widgetProfileModel;
   }
 
+  get widgetMode(): WidgetMode {
+    return this.widgetData?.mode || WidgetMode.Editor;
+  }
+
   constructor(
+    public elementRef: ElementRef,
     private widgetSrv: WidgetService,
     private cdr: ChangeDetectorRef,
     private resolver: ComponentFactoryResolver
@@ -82,10 +85,10 @@ export class WidgetComponent
 
   ngAfterViewInit() {
     this.contentComponentRef = this.createContentComponent();
-
     // 拖拽出来后立即选中
     this.initialized.emit({
       type: this.widget.type,
+      widgetData: this.widgetData,
     });
     this.cdr.detectChanges();
   }
@@ -106,8 +109,13 @@ export class WidgetComponent
       (
         component.instance.widgetData as WidgetData<any>
       ).setting.attribute.inputType = InputType.Multiple;
+
     if (this.widgetData) {
       component.instance.widgetData = this.widgetData;
+    } else {
+      component.instance.widgetData.id = new Date().getTime();
+      component.instance.widgetData.mode = WidgetMode.Editor;
+      this.widgetData = component.instance.widgetData;
     }
     return component;
   }
@@ -130,6 +138,7 @@ export class WidgetComponent
 
   // 点击一个组件
   onMouseEvent(event: MouseEvent) {
+    if (this.widgetMode === "2") return;
     event.stopPropagation();
     this.profileTemporary$.next(false);
     this.setSelected(event.ctrlKey);
@@ -137,6 +146,7 @@ export class WidgetComponent
 
   // 接受组件的鼠标移入和移除操作
   onMouseMoveEvent(type: string) {
+    if (this.widgetMode === "2") return;
     const value = !!this.status ? false : type === "enter" ? true : false;
     const boundingClientRect =
       this.widgetEle.nativeElement.getBoundingClientRect();
@@ -158,6 +168,13 @@ export class WidgetComponent
    * pos: ’top‘ | 'bottom'
    */
   onWidgetDrop(e: DragEvent, pos: string) {
+    if (this.widgetMode === "2") return;
     this.detectDropWidget.emit({ event: e, comp: this.componentRef!, pos });
+  }
+
+  onWidgetDragEnter(e: DragEvent) {
+    if (this.widgetMode === "2") return;
+    this.profileTemporary$.next(null);
+    this.resetStatus();
   }
 }

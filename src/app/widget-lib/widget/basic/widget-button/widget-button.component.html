@@ -8,6 +8,7 @@
   [disabled]="widgetAttribute.disabled"
   [nzDanger]="widgetAttribute.danger"
   [nzGhost]="widgetAttribute.ghost"
+  (click)="onClick()"
 >
   <ng-container *ngIf="readonly">
     {{ widgetAttribute.buttonText }}

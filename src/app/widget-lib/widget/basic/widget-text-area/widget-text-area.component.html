@@ -2,7 +2,7 @@
   nz-input
   [rows]="widgetAttribute.rows"
   [ngModel]="widgetAttribute.text"
-  readonly
+  [readonly]="widgetData.mode === widgetMode.Editor"
   [placeholder]="widgetAttribute.placeholder"
   [disabled]="widgetAttribute.disabled!"
 ></textarea>

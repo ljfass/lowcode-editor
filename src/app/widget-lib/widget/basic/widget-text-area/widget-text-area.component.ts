@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { WidgetMode } from "src/app/enum";
 import { TextAttribute, WidgetData } from "src/app/type";
 import { BaseTextWidget } from "../base-text-widget";
 export type TextWidgetData = WidgetData<TextAttribute>;
@@ -21,6 +22,8 @@ export class WidgetTextAreaComponent extends BaseTextWidget implements OnInit {
       },
     },
   };
+  widgetMode = WidgetMode;
+
   constructor() {
     super();
   }

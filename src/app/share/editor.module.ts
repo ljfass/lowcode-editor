@@ -16,6 +16,7 @@ import { WidgetTextAreaComponent } from "../widget-lib/widget/basic/widget-text-
 import { WidgetTableComponent } from "../widget-lib/widget/advanced/widget-table/widget-table.component";
 import { ClickOutsideDirective } from "../directives/click-outside/click-outside.directive";
 import { DraggableDetectAreaDirective } from "../directives/draggable-detect-area/draggable-detect-area.directive";
+import { MonacoEditorModule } from "ngx-monaco-editor";
 
 const basic = [
   WidgetTextAreaComponent,
@@ -50,6 +51,6 @@ const directives = [
     WidgetSettingModule,
     FormsModule,
   ],
-  exports: [WidgetSettingModule],
+  exports: [WidgetSettingModule, NgZorroAntdModule],
 })
 export class EditorModule {}

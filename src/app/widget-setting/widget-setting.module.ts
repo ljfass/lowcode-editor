@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PropertySettingModule } from "./settings-lib/property-setting/property-setting.module";
 import { StyleSettingModule } from "./settings-lib/style-setting/style-setting.module";
 import { NzTabsModule } from "ng-zorro-antd/tabs";
+import { EventSettingModule } from "./settings-lib/event-setting/event-setting.module";
 const components = [WidgetSettingComponent];
 const nzModules = [NzTabsModule];
 
@@ -13,6 +14,7 @@ const nzModules = [NzTabsModule];
   imports: [
     CommonModule,
     StyleSettingModule,
+    EventSettingModule,
     PropertySettingModule,
     FormsModule,
     ReactiveFormsModule,

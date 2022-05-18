@@ -7,6 +7,7 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from "@angular/core";
+import { EventType, WidgetMode } from "src/app/enum";
 import { WidgetData, TextAttribute } from "src/app/type";
 import { BaseTextWidget } from "../base-text-widget";
 export type TextWidgetData = WidgetData<TextAttribute>;
@@ -36,12 +37,22 @@ export class WidgetTextComponent
         ...this.apperanceStyle,
       },
     },
+    events: [
+      {
+        actionId: "1",
+        actionName: "onChange 值发生变化",
+        actionType: EventType.ValueChange,
+        defaultFuncName: "onChange",
+        funs: [],
+      },
+    ],
   };
   contentText!: string;
   markElement?: HTMLElement;
   delElement?: HTMLElement;
   strongElement?: HTMLElement;
   uElement?: HTMLElement;
+  widgetMode = WidgetMode;
 
   constructor(private renderer2: Renderer2) {
     super();
@@ -201,5 +212,23 @@ export class WidgetTextComponent
       this.strongElement = undefined;
       this.widgetData.setting.attribute.strong = false;
     }
+  }
+
+  onModelChange(val: string) {
+    if (this.widgetData.mode === WidgetMode.Editor) return;
+    this.widgetData.events![0].funs.forEach((widgetEvent) => {
+      const body = widgetEvent.funcBody;
+      const params = widgetEvent.funcParams;
+      const f = new Function(
+        "funcName",
+        "params",
+        "value",
+        `
+      this.params = params;
+      this.value = value;
+      ` + body
+      );
+      f("", params, val);
+    });
   }
 }

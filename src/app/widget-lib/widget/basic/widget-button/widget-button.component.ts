@@ -1,6 +1,12 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 import { NzButtonComponent } from "ng-zorro-antd/button";
-import { ButtonSize, Position, ButtonType } from "../../../../enum";
+import {
+  ButtonSize,
+  Position,
+  ButtonType,
+  EventType,
+  WidgetMode,
+} from "../../../../enum";
 import { ButtonAttribute, WidgetData } from "src/app/type";
 import { BasicBaseWidgetContent } from "../base-widget-content";
 
@@ -54,13 +60,22 @@ export class WidgetButtonComponent
         },
       },
     },
+    events: [
+      {
+        actionId: "1",
+        actionName: "onClick 点击按钮",
+        actionType: EventType.Click,
+        defaultFuncName: "onClick",
+        funs: [],
+      },
+    ],
   };
   @ViewChild("editableSpan") editableSpan!: ElementRef;
   @ViewChild("button") button!: NzButtonComponent;
 
   readonly = true;
   buttonText!: string;
-  constructor() {
+  constructor(public elementRef: ElementRef) {
     super();
   }
 
@@ -90,7 +105,25 @@ export class WidgetButtonComponent
 
   // 改变按钮尺寸后重新获取宽度
   refreshButtonWidgetWidth(size: string) {
+    console.log(this.elementRef.nativeElement.firstElementChild.style);
+
     this.widgetData.setting.style!.layout.width =
       size === "large" ? 64 : size === "default" ? 60 : 44;
+  }
+
+  onClick() {
+    if (this.widgetData.mode === WidgetMode.Editor) return;
+    this.widgetData.events![0].funs.forEach((widgetEvent) => {
+      const body = widgetEvent.funcBody;
+      const params = widgetEvent.funcParams;
+      const f = new Function(
+        "funcName",
+        "params",
+        `
+      this.params = params;
+      ` + body
+      );
+      f("", params);
+    });
   }
 }

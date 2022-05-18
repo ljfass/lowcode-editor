@@ -6,5 +6,5 @@
   [nzAutoFocus]="widgetAttribute.autoFocus"
   [nzAllowClear]="widgetAttribute.allowClear"
   [(ngModel)]="widgetAttribute.default"
-  [nzInputReadOnly]="true"
+  [nzInputReadOnly]="widgetData.mode === '1'"
 ></nz-date-picker>

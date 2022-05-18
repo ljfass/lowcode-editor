@@ -3,22 +3,19 @@ import { textWiddgetFontSzieOptions } from "src/app/const";
 import { WidgetData } from "src/app/type";
 import { WidgetTextComponent } from "src/app/widget-lib/widget/basic/widget-text/widget-text.component";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
+import { PropertySettingBase } from "../property-setting-base";
 
 @Component({
   selector: "app-text",
   templateUrl: "./text.component.html",
   styleUrls: ["./text.component.less"],
 })
-export class TextComponent {
-  constructor(public ref: ComponentRef<WidgetComponent>) {}
+export class TextComponent extends PropertySettingBase {
+  constructor(public ref: ComponentRef<WidgetComponent>) {
+    super(ref);
+  }
   fontOptions = textWiddgetFontSzieOptions;
 
-  get attribute() {
-    return (
-      this.ref.instance.contentComponentRef!.instance
-        .widgetData as WidgetData<any>
-    ).setting.attribute;
-  }
   onFontSelectChange(font: string) {
     this.attribute.size = font;
   }

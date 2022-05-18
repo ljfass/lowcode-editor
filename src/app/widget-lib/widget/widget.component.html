@@ -1,12 +1,16 @@
 <div
-  class="bottom-drag-detect-area"
+  [ngClass]="{ 'widget-drag-detect-area': true, invisible: widgetMode === '2' }"
   appDraggableDetectArea
   [clssName]="'active'"
   (onDragDrop)="onWidgetDrop($event, 'top')"
+  (onDragEnter)="onWidgetDragEnter($event)"
 >
   <div class="inner">
     <span>放在这里</span>
   </div>
+</div>
+<div>
+  <!-- <span *ngIf="widgetMode === '1'"> 组件id：{{ widgetData?.id }} </span> -->
 </div>
 <div
   appMouseMoveOut
@@ -18,8 +22,15 @@
   (mousedown)="onMouseEvent($event)"
   (emitMouseType)="onMouseMoveEvent($event)"
 >
-  <div class="widget">
-    <div class="widget-name">{{ widget.name }}</div>
+  <div
+    [ngClass]="{
+      widget: true,
+      disabled: widgetMode === '2'
+    }"
+  >
+    <div class="widget-name">
+      {{ widget.name }}
+    </div>
     <div class="widget-actions">
       <app-widget-right-corner-action
         [name]="widget.name"
@@ -39,10 +50,11 @@
   <div class="inner"></div>
 </div>
 <div
-  class="bottom-drag-detect-area"
+  [ngClass]="{ 'widget-drag-detect-area': true, invisible: widgetMode === '2' }"
   appDraggableDetectArea
   [clssName]="'active'"
   (onDragDrop)="onWidgetDrop($event, 'bottom')"
+  (onDragEnter)="onWidgetDragEnter($event)"
 >
   <div class="inner">
     <span>放在这里</span>

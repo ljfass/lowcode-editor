@@ -9,12 +9,14 @@ import {
   ViewChild,
   ViewContainerRef,
 } from "@angular/core";
-import { WidgetCard, WidgetData } from "src/app/type";
+import { ComponetInstanceType, WidgetCard, WidgetData } from "src/app/type";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 import { WidgetLibComponent } from "../../widget-lib/widget-lib.component";
 import { WidgetLibService } from "../../widget-lib/widget-lib.service";
 import { takeWhile } from "rxjs/operators";
 import { AdvancedWidgetData } from "src/app/type/advance-widget-data.type";
+import { Page } from "src/app/type/page.type";
+import { WidgetMode } from "src/app/enum";
 
 @Component({
   selector: "app-panel",
@@ -26,31 +28,45 @@ export class PanelComponent implements OnInit, AfterViewInit {
   toolContainer!: ViewContainerRef;
   @ViewChild("compAreaContainer", { read: ViewContainerRef, static: false })
   compAreaContainer!: ViewContainerRef;
+  @ViewChild("previewContainer", { read: ViewContainerRef, static: false })
+  previewContainer!: ViewContainerRef;
   @ViewChild("compArea", { static: true }) compArea!: ElementRef;
   constructor(
     private widgetLibSrv: WidgetLibService,
     private cfr: ComponentFactoryResolver
   ) {}
 
-  /** 选中的部件实例 */
+  /** 选中的组件实例 */
   selectedWidgets: ComponentRef<any>[] = [];
-  /** 已创建的部件实例 */
-  widgets: ComponentRef<WidgetComponent>[] = [];
+  /** 已创建的组件实例 */
+  widgets: ComponetInstanceType[] = [];
   alive = true;
+  pages: Page[] = [];
+  showPreview = false;
+  get currentPage(): Page {
+    return this.pages.find((page) => !!page.selected) || this.pages[0];
+  }
+  // pageMode: WidgetMode = WidgetMode.Editor;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.pages.push({
+      id: "p1",
+      name: "页面1",
+      selected: true,
+      widgets: [],
+      functions: [],
+    });
+  }
 
   ngAfterViewInit(): void {
     // 动态加载组件库区块
     this.createComponent(WidgetLibComponent);
   }
 
-  createComponent(component: any) {
-    const componentFactory = this.cfr.resolveComponentFactory(component);
-    const componentRef = this.toolContainer.createComponent(componentFactory);
-    componentRef.changeDetectorRef.detectChanges();
-  }
-
+  /**
+   *
+   * 组件拖放
+   */
   onCompAreaDrop(event: DragEvent, pos?: string, index?: number) {
     event.preventDefault();
     const widgetType = event.dataTransfer?.getData("widgetType");
@@ -66,13 +82,18 @@ export class PanelComponent implements OnInit, AfterViewInit {
     if (widgetType) {
       const widget = this.widgetLibSrv.getWidgetByType(widgetType);
       if (widget) {
-        // const index = this.widgets.length + 1;
         // comp -> WidgetComponent
         const comp = this.createWidget(widget, injectIndex, pos);
-        // comp.instance.initialized
-        //   .pipe(takeWhile(() => this.alive))
-        //   .subscribe(({ type, style, widgetData }) => {});
+        comp.instance.initialized
+          .pipe(takeWhile(() => this.alive))
+          .subscribe(({ widgetData }) => {
+            this.currentPage.widgets.push({
+              type: widgetType,
+              data: widgetData,
+            });
+          });
         comp.instance.setSelected();
+
         this.widgets.splice(
           injectIndex === undefined ? this.widgets.length : injectIndex,
           0,
@@ -82,16 +103,24 @@ export class PanelComponent implements OnInit, AfterViewInit {
     }
   }
 
+  createComponent(component: any) {
+    const componentFactory = this.cfr.resolveComponentFactory(component);
+    const componentRef = this.toolContainer.createComponent(componentFactory);
+    componentRef.changeDetectorRef.detectChanges();
+  }
+
   createWidget(
     widget: WidgetCard,
     index?: number,
     pos?: string,
     widgetData?: WidgetData<any> | AdvancedWidgetData<any>
-  ): ComponentRef<WidgetComponent> {
+  ): ComponetInstanceType {
     const factory: ComponentFactory<WidgetComponent> =
       this.cfr.resolveComponentFactory(WidgetComponent);
-    const comp: ComponentRef<WidgetComponent> =
-      this.compAreaContainer.createComponent(factory, index);
+    const comp: ComponetInstanceType = this.compAreaContainer.createComponent(
+      factory,
+      index
+    );
     comp.instance.componentRef = comp;
     comp.instance.widget = widget;
     comp.instance.widgets = this.widgets;
@@ -155,7 +184,45 @@ export class PanelComponent implements OnInit, AfterViewInit {
     return comp;
   }
 
-  getData() {
-    console.log(this.widgets);
+  /**
+   * 根据id获取已创建组件实例
+   */
+  $(id: number | string): ComponetInstanceType {
+    return this.widgets.find((item) => item.instance.widgetData?.id === id)!;
+  }
+
+  tooglePageMode() {
+    // this.pageMode = PageMode.Preview;
+  }
+
+  preview() {
+    this.showPreview = true;
+    setTimeout(() => {
+      for (const widget of this.currentPage.widgets) {
+        this.createPreviewWidget(widget.type, widget.data);
+      }
+      this.widgets.forEach((widget) =>
+        widget.changeDetectorRef.detectChanges()
+      );
+    });
+  }
+
+  createPreviewWidget(
+    type: string,
+    widgetData?: WidgetData<any> | AdvancedWidgetData<any>
+  ): ComponetInstanceType | null {
+    const widget = this.widgetLibSrv.getWidgetByType(type);
+    if (widget) {
+      const factory = this.cfr.resolveComponentFactory(WidgetComponent);
+      const comp = this.previewContainer.createComponent(factory);
+      comp.instance.widget = widget;
+      comp.instance.widgets = this.widgets;
+      if (widgetData) {
+        comp.instance.widgetData = widgetData;
+        comp.instance.widgetData.mode = WidgetMode.Preview;
+      }
+      return comp;
+    }
+    return null;
   }
 }

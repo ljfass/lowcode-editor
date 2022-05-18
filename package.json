@@ -19,9 +19,11 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "monaco-editor": "^0.24.0",
     "ng-zorro-antd": "^12.1.1",
     "ngx-color": "^7.3.3",
     "ngx-color-picker": "^12.0.1",
+    "ngx-monaco-editor": "^12.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

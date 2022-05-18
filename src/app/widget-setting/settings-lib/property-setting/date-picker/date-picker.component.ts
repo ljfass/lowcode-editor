@@ -1,20 +1,16 @@
 import { Component, ComponentRef } from "@angular/core";
 import { WidgetData } from "src/app/type";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
+import { PropertySettingBase } from "../property-setting-base";
 
 @Component({
   selector: "app-date-picker",
   templateUrl: "./date-picker.component.html",
   styleUrls: ["./date-picker.component.less"],
 })
-export class DatePickerComponent {
-  constructor(public ref: ComponentRef<WidgetComponent>) {}
-
-  get attribute() {
-    return (
-      this.ref.instance.contentComponentRef!.instance
-        .widgetData as WidgetData<any>
-    ).setting.attribute;
+export class DatePickerComponent extends PropertySettingBase {
+  constructor(public ref: ComponentRef<WidgetComponent>) {
+    super(ref);
   }
 
   // 占位提示修改

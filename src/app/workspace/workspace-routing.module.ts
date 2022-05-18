@@ -1,18 +1,23 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { WorkspaceComponent } from './workspace.component';
-import { PanelComponent } from './panel/panel.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { WorkspaceComponent } from "./workspace.component";
+import { PanelComponent } from "./panel/panel.component";
+import { PreviewComponent } from "./preview/preview.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: WorkspaceComponent,
     children: [
       {
-        path: '',
+        path: "",
         component: PanelComponent,
       },
     ],
+  },
+  {
+    path: "preview",
+    component: PreviewComponent,
   },
 ];
 

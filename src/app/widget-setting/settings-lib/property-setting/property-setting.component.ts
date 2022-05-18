@@ -11,9 +11,9 @@ import {
   ViewContainerRef,
 } from "@angular/core";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
-import { ButtonComponent, TextComponent, DatePickerComponent } from "./index";
 import { WidgetLibService } from "src/app/widget-lib/widget-lib.service";
 import { WidgetCard } from "src/app/type";
+import { PropertySettingBase } from "./property-setting-base";
 
 @Component({
   selector: "app-property-setting",

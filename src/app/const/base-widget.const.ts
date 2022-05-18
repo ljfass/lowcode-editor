@@ -3,22 +3,27 @@ import { WidgetTableComponent } from "../widget-lib/widget/advanced/widget-table
 import { WidgetButtonComponent } from "../widget-lib/widget/basic/widget-button/widget-button.component";
 import { WidgetDatePickerComponent } from "../widget-lib/widget/basic/widget-date-picker/widget-date-picker.component";
 import { WidgetTextComponent } from "../widget-lib/widget/basic/widget-text/widget-text.component";
-import { TextComponent } from "../widget-setting/settings-lib/property-setting";
-import { ButtonComponent } from "../widget-setting/settings-lib/property-setting/button/button.component";
-import { DatePickerComponent } from "../widget-setting/settings-lib/property-setting/date-picker/date-picker.component";
-import { TableComponent } from "../widget-setting/settings-lib/property-setting/table/table.component";
+import {
+  TableComponent,
+  TextComponent,
+  DatePickerComponent,
+  ButtonComponent,
+} from "../widget-setting/settings-lib/property-setting";
+import { ButtonComponent as EventButtonComponent } from "../widget-setting/settings-lib/event-setting";
 export const WIDGET_LIST: WidgetCard[] = [
   {
     type: "button",
     name: "按钮",
     component: WidgetButtonComponent,
     settingComponent: ButtonComponent,
+    eventComponent: EventButtonComponent,
   },
   {
     type: "text",
     name: "单行文本",
     component: WidgetTextComponent,
     settingComponent: TextComponent,
+    eventComponent: EventButtonComponent,
   },
   {
     type: "text-area",

@@ -1,9 +1,14 @@
-  <nz-tabset [nzSelectedIndex]="selectedIndex" (nzSelectedIndexChange)="onSelectedIndexChange($event)">
-    <nz-tab nzTitle="属性">
-      <app-property-setting [ref]="ref"></app-property-setting> 
-    </nz-tab>
-    <nz-tab nzTitle="样式">
-      <app-style-setting [ref]="ref"></app-style-setting> 
-    </nz-tab>
-    <nz-tab nzTitle="事件"></nz-tab>
-  </nz-tabset>
+<nz-tabset
+  [nzSelectedIndex]="tabSelectedIndex"
+  (nzSelectedIndexChange)="onTabSelectedIndexChange($event)"
+>
+  <nz-tab nzTitle="属性">
+    <app-property-setting [ref]="ref"></app-property-setting>
+  </nz-tab>
+  <nz-tab nzTitle="样式">
+    <app-style-setting [ref]="ref"></app-style-setting>
+  </nz-tab>
+  <nz-tab nzTitle="事件">
+    <app-event-setting [ref]="ref"></app-event-setting>
+  </nz-tab>
+</nz-tabset>

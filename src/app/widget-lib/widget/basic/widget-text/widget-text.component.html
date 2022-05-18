@@ -28,18 +28,19 @@
   "
   [type]="widgetAttribute.inputType === 'secure' ? 'password' : 'text'"
   nz-input
-  readonly
+  [readonly]="widgetData.mode === widgetMode.Editor"
   [placeholder]="widgetAttribute.placeholder"
   [nzSize]="widgetAttribute.size"
   [disabled]="widgetAttribute.disabled!"
   [ngModel]="widgetAttribute.text"
+  (ngModelChange)="onModelChange($event)"
 />
 <textarea
   *ngIf="widgetAttribute.inputType === 'multiple'"
   nz-input
   [rows]="widgetAttribute.rows"
   [ngModel]="widgetAttribute.text"
-  readonly
+  [readonly]="widgetData.mode === widgetMode.Editor"
   [placeholder]="widgetAttribute.placeholder"
   [disabled]="widgetAttribute.disabled!"
 ></textarea>

@@ -4,20 +4,16 @@ import { ButtonType } from "src/app/enum";
 import { WidgetData } from "src/app/type";
 import { WidgetButtonComponent } from "src/app/widget-lib/widget/basic/widget-button/widget-button.component";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
+import { PropertySettingBase } from "../property-setting-base";
 
 @Component({
   selector: "app-button",
   templateUrl: "./button.component.html",
   styleUrls: ["./button.component.less"],
 })
-export class ButtonComponent {
-  constructor(public ref: ComponentRef<WidgetComponent>) {}
-
-  get attribute() {
-    return (
-      this.ref.instance.contentComponentRef!.instance
-        .widgetData as WidgetData<any>
-    ).setting.attribute;
+export class ButtonComponent extends PropertySettingBase {
+  constructor(public ref: ComponentRef<WidgetComponent>) {
+    super(ref);
   }
 
   onInputChange(val: string) {

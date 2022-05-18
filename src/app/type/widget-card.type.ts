@@ -6,4 +6,5 @@ export type WidgetCard = {
   icon?: string;
   component: any;
   settingComponent: any;
+  eventComponent?: any;
 };

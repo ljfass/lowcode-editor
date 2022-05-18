@@ -1,0 +1,30 @@
+<input nz-input [(ngModel)]="title" />
+
+<!-- <textarea rows="4" nz-input [(ngModel)]="params"></textarea> -->
+
+<div>
+  <span>参数：</span>
+  <span>
+    <ngx-monaco-editor
+      [options]="editorParamsOptions"
+      [(ngModel)]="code"
+      (ngModelChange)="handleChange($event)"
+    ></ngx-monaco-editor>
+  </span>
+</div>
+
+<div>
+  <span>代码：</span>
+  <span>
+    <ngx-monaco-editor
+      [options]="editorBodyOptions"
+      [(ngModel)]="body"
+      (ngModelChange)="handleChange($event)"
+    ></ngx-monaco-editor>
+  </span>
+</div>
+
+<div>
+  <button nz-button (click)="cancel()">取消</button>
+  <button nz-button nzType="primary" (click)="confirm()">确定</button>
+</div>

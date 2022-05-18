@@ -15,16 +15,16 @@ import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 export class WidgetSettingComponent implements OnChanges {
   @Input() ref!: ComponentRef<WidgetComponent>;
 
-  selectedIndex = 0;
+  tabSelectedIndex = 0;
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.ref.firstChange) {
-      this.selectedIndex = 0;
+      this.tabSelectedIndex = 0;
     }
   }
 
-  onSelectedIndexChange(index: number) {
-    this.selectedIndex = index;
+  onTabSelectedIndexChange(index: number) {
+    this.tabSelectedIndex = index;
   }
 }
