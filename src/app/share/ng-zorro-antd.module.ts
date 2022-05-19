@@ -19,6 +19,7 @@ import { NzIconModule } from "ng-zorro-antd/icon";
 import { NzListModule } from "ng-zorro-antd/list";
 import { NzDropDownModule } from "ng-zorro-antd/dropdown";
 import { NzModalModule } from "ng-zorro-antd/modal";
+import { NzPaginationModule } from "ng-zorro-antd/pagination";
 import { NZ_I18N, zh_CN } from "ng-zorro-antd/i18n";
 import { registerLocaleData, CommonModule } from "@angular/common";
 import zh from "@angular/common/locales/zh";
@@ -51,6 +52,7 @@ registerLocaleData(zh);
     NzListModule,
     NzDropDownModule,
     NzModalModule,
+    NzPaginationModule,
   ],
 })
 export class NgZorroAntdModule {}

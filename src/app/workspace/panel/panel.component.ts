@@ -92,8 +92,8 @@ export class PanelComponent implements OnInit, AfterViewInit {
               data: widgetData,
             });
           });
+        // 拖拽出来后立即选中
         comp.instance.setSelected();
-
         this.widgets.splice(
           injectIndex === undefined ? this.widgets.length : injectIndex,
           0,

@@ -85,7 +85,7 @@ export class WidgetComponent
 
   ngAfterViewInit() {
     this.contentComponentRef = this.createContentComponent();
-    // 拖拽出来后立即选中
+    // 将数据写入currentPage
     this.initialized.emit({
       type: this.widget.type,
       widgetData: this.widgetData,

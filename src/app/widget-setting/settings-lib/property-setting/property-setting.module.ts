@@ -5,6 +5,7 @@ import { ButtonModule } from "./button/button.module";
 import { TextModule } from "./text/text.module";
 import { DatePickerModule } from "./date-picker/date-picker.module";
 import { TableModule } from "./table/table.module";
+import { PaginationModule } from "./pagination/pagination.module";
 
 const components = [PropertySettingComponent];
 
@@ -16,6 +17,7 @@ const components = [PropertySettingComponent];
     ButtonModule,
     DatePickerModule,
     TextModule,
+    PaginationModule,
   ],
   exports: [...components],
 })

@@ -1,0 +1,80 @@
+<p>
+  <span>数据总数</span>
+  <span>
+    <nz-input-number
+      nzSize="small"
+      [nzMin]="1"
+      [(ngModel)]="attribute.total"
+    ></nz-input-number>
+  </span>
+</p>
+
+<p>
+  <span>当前页数</span>
+  <span>
+    <nz-input-number
+      nzSize="small"
+      [nzMin]="1"
+      [(ngModel)]="attribute.pageIndex"
+    ></nz-input-number>
+  </span>
+</p>
+
+<p>
+  <span>每页条数</span>
+  <span>
+    <nz-input-number
+      nzSize="small"
+      [nzMin]="1"
+      [(ngModel)]="attribute.pageSize"
+    ></nz-input-number>
+  </span>
+</p>
+
+<p>
+  <span>分页尺寸</span>
+  <span>
+    <app-my-size-picker
+      nz-input
+      pickerSize="small"
+      [(ngModel)]="attribute.size"
+    ></app-my-size-picker>
+  </span>
+</p>
+
+<p>
+  <span>每页可以显示条数可选值</span>
+  <span>
+    <input
+      nz-input
+      nzSize="small"
+      [ngModel]="sizeOptionsValue"
+      (ngModelChange)="onPageSizeOptionsChange($event)"
+    />
+  </span>
+</p>
+<p>
+  <span>是否禁用</span>
+  <span>
+    <nz-switch [(ngModel)]="attribute.disabled"></nz-switch>
+  </span>
+</p>
+<p>
+  <span>是否可以快速跳转至某页</span>
+  <span>
+    <nz-switch [(ngModel)]="attribute.showQuickJumper"></nz-switch>
+  </span>
+</p>
+<p>
+  <span>否可以改变 pageSize</span>
+  <span>
+    <nz-switch [(ngModel)]="attribute.showSizeChanger"></nz-switch>
+  </span>
+</p>
+
+<p>
+  <span>只有一页时是否隐藏分页器</span>
+  <span>
+    <nz-switch [(ngModel)]="attribute.hideOnSinglePage"></nz-switch>
+  </span>
+</p>

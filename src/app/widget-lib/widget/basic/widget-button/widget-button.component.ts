@@ -105,8 +105,6 @@ export class WidgetButtonComponent
 
   // 改变按钮尺寸后重新获取宽度
   refreshButtonWidgetWidth(size: string) {
-    console.log(this.elementRef.nativeElement.firstElementChild.style);
-
     this.widgetData.setting.style!.layout.width =
       size === "large" ? 64 : size === "default" ? 60 : 44;
   }

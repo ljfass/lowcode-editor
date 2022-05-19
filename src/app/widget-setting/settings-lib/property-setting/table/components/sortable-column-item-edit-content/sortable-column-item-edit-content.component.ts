@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { TABLE_COLUMN_TYPE_LIST } from "src/app/const";
-import { ColumnEditService } from "../../providers/column-edit.service";
+import { ColumnEditService } from "../../providers/column-edit/column-edit.service";
 import { CollapseColumnListType } from "../../type";
 
 @Component({

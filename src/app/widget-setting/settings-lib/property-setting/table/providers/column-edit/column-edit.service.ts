@@ -1,7 +1,7 @@
 import { Injectable, TemplateRef } from "@angular/core";
 import { NzDrawerRef, NzDrawerService } from "ng-zorro-antd/drawer";
-import { SortableColumnItemEditContentComponent } from "../components/sortable-column-item-edit-content/sortable-column-item-edit-content.component";
-import { CollapseColumnListType } from "../type";
+import { SortableColumnItemEditContentComponent } from "../../components/sortable-column-item-edit-content/sortable-column-item-edit-content.component";
+import { CollapseColumnListType } from "../../type";
 
 @Injectable({
   providedIn: "root",

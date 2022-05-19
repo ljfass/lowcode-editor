@@ -7,7 +7,7 @@ import {
   ComponentRef,
 } from "@angular/core";
 import { CollapseColumnListType } from "../../type";
-import { ColumnEditService } from "../../providers/column-edit.service";
+import { ColumnEditService } from "../../providers/column-edit/column-edit.service";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 
 @Component({

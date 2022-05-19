@@ -14,9 +14,8 @@ import { WidgetTextComponent } from "../widget-lib/widget/basic/widget-text/widg
 import { WidgetDatePickerComponent } from "../widget-lib/widget/basic/widget-date-picker/widget-date-picker.component";
 import { WidgetTextAreaComponent } from "../widget-lib/widget/basic/widget-text-area/widget-text-area.component";
 import { WidgetTableComponent } from "../widget-lib/widget/advanced/widget-table/widget-table.component";
-import { ClickOutsideDirective } from "../directives/click-outside/click-outside.directive";
 import { DraggableDetectAreaDirective } from "../directives/draggable-detect-area/draggable-detect-area.directive";
-import { MonacoEditorModule } from "ngx-monaco-editor";
+import { WidgetPaginationComponent } from "../widget-lib/widget/basic/widget-pagination/widget-pagination.component";
 
 const basic = [
   WidgetTextAreaComponent,
@@ -24,6 +23,7 @@ const basic = [
   WidgetTextComponent,
   WidgetDatePickerComponent,
   WidgetTableComponent,
+  WidgetPaginationComponent,
 ];
 
 const advance = [WidgetTableComponent];

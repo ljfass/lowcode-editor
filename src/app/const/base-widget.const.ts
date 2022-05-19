@@ -10,6 +10,8 @@ import {
   ButtonComponent,
 } from "../widget-setting/settings-lib/property-setting";
 import { ButtonComponent as EventButtonComponent } from "../widget-setting/settings-lib/event-setting";
+import { WidgetPaginationComponent } from "../widget-lib/widget/basic/widget-pagination/widget-pagination.component";
+import { PaginationComponent } from "../widget-setting/settings-lib/property-setting/pagination/pagination.component";
 export const WIDGET_LIST: WidgetCard[] = [
   {
     type: "button",
@@ -42,5 +44,12 @@ export const WIDGET_LIST: WidgetCard[] = [
     name: "表格",
     component: WidgetTableComponent,
     settingComponent: TableComponent,
+    eventComponent: EventButtonComponent,
+  },
+  {
+    type: "pagination",
+    name: "分页器",
+    component: WidgetPaginationComponent,
+    settingComponent: PaginationComponent,
   },
 ];

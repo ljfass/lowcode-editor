@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 import { WidgetStatus } from "src/app/enum";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",

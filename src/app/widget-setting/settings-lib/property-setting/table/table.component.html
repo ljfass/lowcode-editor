@@ -7,3 +7,14 @@
     (onItemAdd)="onTableColumnAdd()"
   ></app-sortable-columns-list>
 </app-widget-setting-collapse-pane>
+<br />
+<app-widget-setting-collapse-pane [panel]="dataSourcePane">
+  <button
+    nz-button
+    nzType="primary"
+    nzBlock
+    (click)="onTableDatasourceSetting()"
+  >
+    设置数据源
+  </button>
+</app-widget-setting-collapse-pane>

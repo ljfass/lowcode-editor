@@ -3,4 +3,5 @@ export enum EventType {
   DblClick = "dblclick",
   ValueChange = "valueChange",
   Focus = "focus",
+  TableFetchData = "tableFetchData",
 }

@@ -1,25 +1,18 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { EventType, WidgetMode } from "src/app/enum";
 import { AdvancedWidgetData } from "src/app/type/advance-widget-data.type";
 import { TableAttribute } from "src/app/type/attribute/table";
 import { SortableListItemType } from "src/app/widget-setting/settings-lib/property-setting/table/enum";
 import { AdvancedBaseWidgetContent } from "../base-wdiget-content";
 export type TableWidgetData = AdvancedWidgetData<TableAttribute>;
-interface Person {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-}
+
 // export type TableWidgetData = AdvancedWidgetData<TableAttribute>;
 @Component({
   selector: "app-widget-table",
   templateUrl: "./widget-table.component.html",
   styleUrls: ["./widget-table.component.less"],
 })
-export class WidgetTableComponent
-  extends AdvancedBaseWidgetContent
-  implements OnInit
-{
+export class WidgetTableComponent extends AdvancedBaseWidgetContent {
   widgetData: TableWidgetData = {
     attribute: {
       columns: [
@@ -48,10 +41,38 @@ export class WidgetTableComponent
         },
       ],
     },
+    events: [
+      {
+        actionId: "1",
+        actionName: "分页、搜索、排序时触发",
+        actionType: EventType.TableFetchData,
+        defaultFuncName: "onTableFetchData",
+        funs: [],
+      },
+    ],
+  };
+  tableQuery = {
+    currentPage: 1,
+    currentPageIndex: 1,
+    currentPageSize: 10,
   };
   constructor() {
     super();
   }
 
-  ngOnInit(): void {}
+  onSearch(): void {
+    if (this.widgetData.mode === WidgetMode.Editor) return;
+    this.widgetData.events![0].funs.forEach((widgetEvent) => {
+      const body = widgetEvent.funcBody;
+      const params = widgetEvent.funcParams;
+      const funcBody = `
+      this.params = params;
+      ${body}
+      onFetchData(queryParams);
+      `;
+      const f = new Function("queryParams", "params", funcBody);
+
+      f(this.tableQuery, params);
+    });
+  }
 }

@@ -54,6 +54,7 @@ export class PropertySettingComponent implements OnChanges {
   }
 
   renderWidgetPropertySetting(component: any) {
+    if (!component) return;
     setTimeout(() => {
       this.propertyRender.clear();
       const factory = this.resolver.resolveComponentFactory(component);
