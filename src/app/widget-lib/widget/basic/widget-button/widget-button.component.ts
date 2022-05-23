@@ -64,7 +64,7 @@ export class WidgetButtonComponent
       {
         actionId: "1",
         actionName: "onClick 点击按钮",
-        actionType: EventType.Click,
+        actionType: EventType.TableFetchData,
         defaultFuncName: "onClick",
         funs: [],
       },

@@ -1,4 +1,10 @@
-import { Component, ComponentRef, ViewContainerRef } from "@angular/core";
+import {
+  Component,
+  ComponentRef,
+  OnInit,
+  SimpleChanges,
+  ViewContainerRef,
+} from "@angular/core";
 import { TableWidgetData } from "src/app/widget-lib/widget/advanced/widget-table/widget-table.component";
 import { WidgetComponent } from "src/app/widget-lib/widget/widget.component";
 import { CollapsePaneExpandMode, SortableListItemType } from "./enum";
@@ -11,7 +17,7 @@ import { DataSourceService } from "./providers/data-source/data-source.service";
   templateUrl: "./table.component.html",
   styleUrls: ["./table.component.less"],
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
   /**
    * 数据列
    * 数据源
@@ -32,12 +38,21 @@ export class TableComponent {
     private dataSourceServ: DataSourceService,
     public ref: ComponentRef<WidgetComponent>,
     private viewContainerRef: ViewContainerRef
-  ) {
+  ) {}
+
+  ngAfterViewInit() {
+    console.log(
+      this.ref.instance.contentComponentRef?.instance
+        .widgetData as TableWidgetData
+    );
+
     this.columns = (
       this.ref.instance.contentComponentRef?.instance
         .widgetData as TableWidgetData
     ).attribute.columns;
   }
+
+  ngOnInit() {}
 
   // 编辑数据列
   onTableColumnEdit(i: number) {

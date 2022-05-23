@@ -1,17 +1,22 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { WorkspaceModule } from './workspace/workspace.module';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { PreviewComponent } from "./workspace/preview/preview.component";
+import { WorkspaceModule } from "./workspace/workspace.module";
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'workspace',
-    pathMatch: 'full',
+    path: "",
+    redirectTo: "workspace",
+    pathMatch: "full",
   },
   {
-    path: 'workspace',
+    path: "workspace",
     loadChildren: () =>
-      import('./workspace/workspace.module').then((m) => WorkspaceModule),
+      import("./workspace/workspace.module").then((m) => WorkspaceModule),
+  },
+  {
+    path: "preview",
+    component: PreviewComponent,
   },
 ];
 

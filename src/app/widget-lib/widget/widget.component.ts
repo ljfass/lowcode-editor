@@ -36,7 +36,6 @@ export class WidgetComponent
   container!: ViewContainerRef;
 
   @Input() widget!: WidgetCard;
-  @Input() widgets!: ComponetInstanceType[];
   @Output() initialized = new EventEmitter<any>();
   @Output() selectWidget = new EventEmitter<any>();
   @Output() deleteWidget = new EventEmitter<any>();
@@ -91,6 +90,7 @@ export class WidgetComponent
       widgetData: this.widgetData,
     });
     this.cdr.detectChanges();
+    setTimeout(() => {}, 2000);
   }
 
   // 创建具体的组件

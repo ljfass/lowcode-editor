@@ -16,7 +16,8 @@ import { WidgetLibService } from "../../widget-lib/widget-lib.service";
 import { takeWhile } from "rxjs/operators";
 import { AdvancedWidgetData } from "src/app/type/advance-widget-data.type";
 import { Page } from "src/app/type/page.type";
-import { WidgetMode } from "src/app/enum";
+import { PreviewServiceService } from "../preview/service/preview-service.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-panel",
@@ -33,7 +34,9 @@ export class PanelComponent implements OnInit, AfterViewInit {
   @ViewChild("compArea", { static: true }) compArea!: ElementRef;
   constructor(
     private widgetLibSrv: WidgetLibService,
-    private cfr: ComponentFactoryResolver
+    private previewSrv: PreviewServiceService,
+    private cfr: ComponentFactoryResolver,
+    private router: Router
   ) {}
 
   /** 选中的组件实例 */
@@ -42,7 +45,6 @@ export class PanelComponent implements OnInit, AfterViewInit {
   widgets: ComponetInstanceType[] = [];
   alive = true;
   pages: Page[] = [];
-  showPreview = false;
   get currentPage(): Page {
     return this.pages.find((page) => !!page.selected) || this.pages[0];
   }
@@ -123,7 +125,6 @@ export class PanelComponent implements OnInit, AfterViewInit {
     );
     comp.instance.componentRef = comp;
     comp.instance.widget = widget;
-    comp.instance.widgets = this.widgets;
     comp.instance.selectWidget
       .pipe(takeWhile(() => this.alive))
       .subscribe(({ multi }) => {
@@ -196,33 +197,7 @@ export class PanelComponent implements OnInit, AfterViewInit {
   }
 
   preview() {
-    this.showPreview = true;
-    setTimeout(() => {
-      for (const widget of this.currentPage.widgets) {
-        this.createPreviewWidget(widget.type, widget.data);
-      }
-      this.widgets.forEach((widget) =>
-        widget.changeDetectorRef.detectChanges()
-      );
-    });
-  }
-
-  createPreviewWidget(
-    type: string,
-    widgetData?: WidgetData<any> | AdvancedWidgetData<any>
-  ): ComponetInstanceType | null {
-    const widget = this.widgetLibSrv.getWidgetByType(type);
-    if (widget) {
-      const factory = this.cfr.resolveComponentFactory(WidgetComponent);
-      const comp = this.previewContainer.createComponent(factory);
-      comp.instance.widget = widget;
-      comp.instance.widgets = this.widgets;
-      if (widgetData) {
-        comp.instance.widgetData = widgetData;
-        comp.instance.widgetData.mode = WidgetMode.Preview;
-      }
-      return comp;
-    }
-    return null;
+    this.previewSrv.widgets = [...this.currentPage.widgets];
+    this.router.navigate(["preview"]);
   }
 }

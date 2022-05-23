@@ -51,17 +51,25 @@ export class WidgetTableComponent extends AdvancedBaseWidgetContent {
       },
     ],
   };
-  tableQuery = {
+  tableQuery: {
+    searchKey: string;
+    currentPage: number;
+    currentPageIndex: number;
+    currentPageSize: number;
+  } = {
+    searchKey: "",
     currentPage: 1,
     currentPageIndex: 1,
     currentPageSize: 10,
   };
+  searchValue = "";
   constructor() {
     super();
   }
 
   onSearch(): void {
     if (this.widgetData.mode === WidgetMode.Editor) return;
+    // this.tableQuery.searchKey = value;
     this.widgetData.events![0].funs.forEach((widgetEvent) => {
       const body = widgetEvent.funcBody;
       const params = widgetEvent.funcParams;

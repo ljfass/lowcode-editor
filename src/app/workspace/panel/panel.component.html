@@ -44,13 +44,3 @@
     <div (click)="preview()" style="height: 30px">预览</div>
   </footer>
 </div>
-
-<nz-modal
-  [(nzVisible)]="showPreview"
-  nzTitle="预览"
-  (nzOnCancel)="showPreview = false"
->
-  <ng-container *nzModalContent>
-    <ng-template #previewContainer></ng-template>
-  </ng-container>
-</nz-modal>

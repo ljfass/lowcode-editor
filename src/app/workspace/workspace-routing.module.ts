@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { WorkspaceComponent } from "./workspace.component";
 import { PanelComponent } from "./panel/panel.component";
-import { PreviewComponent } from "./preview/preview.component";
 
 const routes: Routes = [
   {
@@ -14,10 +13,6 @@ const routes: Routes = [
         component: PanelComponent,
       },
     ],
-  },
-  {
-    path: "preview",
-    component: PreviewComponent,
   },
 ];
 

@@ -43,7 +43,9 @@ export class ButtonComponent implements OnInit {
         this.data.events![index!].funs.length + 1
       }`,
       {},
-      "function onFetchData(params){ console.log(params) }",
+      `function onFetchData(params){ 
+  console.log(params) 
+}`,
       this.viewContainerRef
     );
     modal.afterOpen.subscribe;
